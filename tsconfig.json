@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -14,7 +15,23 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@routes/*": ["src/routes/*"],
+      "@style/*": ["src/style/*"],
+      "@bootstrap-scss/*": ["./node_modules/bootstrap/scss/bootstrap"],
+      "@bootstrap-icons-svg/*": [
+        "./node_modules/bootstrap-icons/bootstrap-icons.svg"
+      ],
+      "@bootstrap-js": [
+        "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+      ]
+    },
   },
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }],
 }
