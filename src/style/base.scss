@@ -1,2 +1,106 @@
-$offcanvas-backdrop-opacity: 0;
+// $offcanvas-backdrop-opacity: 0;
+
+$app-debug: false;
+$app-debug-border: 1px;
+$app-debug-border-color: blue;
+
+$app-transition: 0.2s;
+$app-navbar-height: 56px;
+$app-footer-height: 56px;
+
+.app-debug-border {
+  border-top: $app-debug-border solid white;
+  border-right: $app-debug-border solid red;
+  border-bottom: $app-debug-border solid blue;
+  border-left: $app-debug-border solid yellow;
+}
+
 @import '@bootstrap-scss';
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar.fixed-top {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  height: $app-navbar-height;
+  .container,
+  .container-fluid {
+    button:not(:last-child) {
+      margin-right: 0.4rem;
+    }
+  }
+}
+.navbar.sticky-top {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  height: $app-navbar-height;
+}
+.navbar.fixed-bottom {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  height: $app-footer-height;
+}
+
+.app-main {
+  overflow-x: hidden;
+  margin-top: calc($app-navbar-height + $app-debug-border);
+  @if ($app-debug) {
+    background: purple;
+  }
+  .row {
+    @if ($app-debug) {
+      @extend .app-debug-border;
+    }
+    height: calc(100vh - $app-navbar-height - $app-footer-height);
+
+    .app-sidebar-start {
+      @if ($app-debug) {
+        @extend .app-debug-border;
+      }
+      max-width: 300px;
+    }
+    .app-sidebar-start.show {
+      transition: $app-transition ease-in;
+      opacity: 1;
+      max-width: 300px;
+    }
+    .app-sidebar-start.hide {
+      transition: $app-transition ease-out;
+      opacity: 0;
+      margin-left: -300px;
+    }
+
+    .app-sidebar-end {
+      @if ($app-debug) {
+        @extend .app-debug-border;
+      }
+      max-width: 300px;
+    }
+    .app-sidebar-end.show {
+      transition: $app-transition ease-in;
+      opacity: 1;
+      max-width: 300px;
+    }
+    .app-sidebar-end.hide {
+      transition: $app-transition ease-out;
+      opacity: 0;
+      margin-right: -300px;
+    }
+
+    .app-content {
+      @if ($app-debug) {
+        @extend .app-debug-border;
+        background-color: darkred;
+      }
+      overflow-y: scroll;
+    }
+  }
+}
