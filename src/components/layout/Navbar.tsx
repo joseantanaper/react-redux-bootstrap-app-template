@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@app/hooks'
+import { test } from '@app/slice/appSlice'
 
 const Navbar = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const res = dispatch(test())
+    console.log(res)
+  }, [])
+
   const toggleSidebarStart = () => {
     console.log(
       'toggleSidebar',
@@ -39,55 +48,48 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand fixed-top bg-body-tertiary">
+      <nav className="navbar fixed-top bg-body-tertiary shadow">
         <div className="container-fluid">
-          <button
-            className="btn btn-danger"
-            type="button"
-            onClick={toggleSidebarStart}
-          >
-            =
-          </button>
-          <button
-            className="btn btn-primary"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions"
-          >
-            =
-          </button>
-          Navbar: Pixel Perfect App
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-            </ul>
-            <span className="navbar-text">
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={toggleSidebarEnd}
-              >
-                =
-              </button>
-            </span>
+          <div className="d-flex justify-content-start align-items-center">
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={toggleSidebarStart}
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBothOptions"
+              aria-controls="offcanvasWithBothOptions"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <a className="navbar-brand" href="#">
+              Pixel Perfect App Template
+            </a>
+          </div>
+          <div className="justify-content-end">
+            <button
+              className="navbar-toggler"
+              type="button"
+              onClick={toggleSidebarEnd}
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
           </div>
         </div>
       </nav>
+
+      <div
+        id="app-sidebar-start"
+        className="app-sidebar-start shadow col show vh-100 position-fixed bg-body-tertiary"
+      >
+        SidebarStart
+      </div>
+
       <div
         className="offcanvas offcanvas-start shadow"
         data-bs-scroll="true"

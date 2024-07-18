@@ -1,6 +1,6 @@
 const Sidebar = () => (
   <>
-    <div className="h-100 bg-body-tertiary position-fixed end-0">SSidebar</div>
+    <div className="h-100 bg-body-tertiary position-fixed end-0">ESidebar</div>
     <div
       className="offcanvas offcanvas-start"
       data-bs-scroll="true"

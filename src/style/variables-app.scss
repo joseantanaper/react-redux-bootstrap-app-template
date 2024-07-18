@@ -1,0 +1,14 @@
+$app-debug: false;
+$app-debug-border: 1px;
+$app-debug-border-color: blue;
+
+$app-transition: 0.3s;
+$app-navbar-height: 50px;
+$app-footer-height: 50px;
+
+.app-debug-border {
+  border-top: $app-debug-border solid white;
+  border-right: $app-debug-border solid red;
+  border-bottom: $app-debug-border solid blue;
+  border-left: $app-debug-border solid yellow;
+}

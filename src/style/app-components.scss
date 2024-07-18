@@ -1,0 +1,131 @@
+.app-main {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  // scrollbar-color: $primary $info;
+  // overflow-clip-margin: 4px;
+  // scroll-behavior: smooth;
+  // scroll-snap-align: start;
+  // scroll-snap-stop: always;
+  // scroll-snap-type: x proximity;
+  // scrollbar-gutter: stable both-edges;
+  // scrollbar-color: black purple;
+
+  margin-top: calc($app-navbar-height + $app-debug-border);
+  @if ($app-debug) {
+    background: purple;
+  }
+
+  .row {
+    @if ($app-debug) {
+      @extend .app-debug-border;
+    }
+    height: calc(100vh - $app-navbar-height - $app-footer-height);
+    .app-content {
+      @if ($app-debug) {
+        @extend .app-debug-border;
+        background-color: darkred;
+      }
+    }
+  }
+}
+
+// #region Navbars
+
+.navbar {
+  .container,
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-toggler {
+    min-height: $app-navbar-height !important;
+    height: $app-navbar-height;
+  }
+  .navbar-toggler:focus,
+  .navbar-toggler:active,
+  .navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .navbar-toggler:hover {
+    border-color: $gray-600;
+  }
+  .navbar-toggler:focus {
+    border-color: $primary;
+  }
+  .navbar-toggler:active {
+    border-color: $gray-200;
+  }
+}
+
+.navbar.fixed-top {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  height: $app-navbar-height;
+  .container,
+  .container-fluid {
+    button:not(:last-child) {
+      margin-right: 0.4rem;
+    }
+  }
+}
+
+.navbar.sticky-top {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  height: $app-navbar-height;
+}
+
+.navbar.fixed-bottom {
+  @if ($app-debug) {
+    opacity: 0.4;
+    @extend .app-debug-border;
+  }
+  min-height: $app-footer-height !important;
+  height: $app-footer-height !important;
+}
+// #endregion
+
+// #region Sidebars
+
+.app-sidebar-start {
+  @if ($app-debug) {
+    @extend .app-debug-border;
+  }
+  min-width: 300px;
+  max-width: 300px;
+  width: 300px;
+}
+.app-sidebar-start.show {
+  transition: $app-transition ease-in;
+  opacity: 1;
+  max-width: 300px;
+}
+.app-sidebar-start.hide {
+  transition: $app-transition ease-out;
+  opacity: 0;
+  margin-left: -300px;
+}
+
+.app-sidebar-end {
+  @if ($app-debug) {
+    @extend .app-debug-border;
+  }
+  max-width: 300px;
+}
+.app-sidebar-end.show {
+  transition: $app-transition ease-in;
+  opacity: 1;
+  max-width: 300px;
+}
+.app-sidebar-end.hide {
+  transition: $app-transition ease-out;
+  opacity: 0;
+  margin-right: -300px;
+}
+// #endregion

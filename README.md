@@ -7,6 +7,7 @@ npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 ```
 
 Note: many deprecated warnings on npm install
+
 ```sh
 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
@@ -45,6 +46,7 @@ npm i @types/node -D
 ```
 
 vite.config.ts:
+
 ```ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -63,22 +65,28 @@ export default defineConfig({
   plugins: [react()],
 })
 ```
+
 ## Issues?
+
 Parsing error: ESLint was configured to run on `<tsconfigRootDir>/vite.config.ts` using `parserOptions.project`: <tsconfigRootDir>/tsconfig.json
 .eslintrc.cjs:
+
 ```json
 "parserOptions": {
   "project": ["./tsconfig.json", "./tsconfig.node.json", "./vite.config.ts"],
   "tsconfigRootDir": "./"
 },
 ```
+
 tsconfig.json
+
 ```ts
 "include": ["src"]
 ```
 
-Cannot find name '__dirname'
+Cannot find name '\_\_dirname'
 vite.config.ts
+
 ```ts
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
@@ -88,17 +96,26 @@ const __dirname = path.dirname(__filename)
 # Extra dependencies
 
 ## Sass
+
 ```sh
 npm install sass@latest --save-dev
 ```
+
 ## Bootstrap
+
 ```sh
 npm install bootstrap@latest --save-dev
 ```
 
 base.scss
-```scss
-@import '@bootstrap-scss'
 
+```scss
+@import '@bootstrap-scss';
+```
+
+## React Lorem Ipsum
+
+```sh
+npm install react-lorem-ipsum --save-dev
 ```
 

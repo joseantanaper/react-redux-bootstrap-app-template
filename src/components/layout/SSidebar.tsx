@@ -1,6 +1,6 @@
 const Sidebar = () => (
   <>
-    <div className="h-100 bg-body-tertiary position-fixed">
+    <div className="vh-100 bg-body-tertiary position-fixed">
       SSidebar
       <br />
     </div>
