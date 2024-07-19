@@ -1,6 +1,17 @@
+.app,
 .app-main {
-  overflow-y: scroll;
-  scrollbar-width: thin;
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.app-main {
+  // overflow-y: scroll;
+  // width: 100vw;
+  // margin-right: 0 !important;
+  // padding-right: 0 !important;
+  // border-right: 0 !important;
   // scrollbar-color: $primary $info;
   // overflow-clip-margin: 4px;
   // scroll-behavior: smooth;
@@ -10,32 +21,79 @@
   // scrollbar-gutter: stable both-edges;
   // scrollbar-color: black purple;
 
-  margin-top: calc($app-navbar-height + $app-debug-border);
-  @if ($app-debug) {
-    background: purple;
-  }
-
   .row {
-    @if ($app-debug) {
-      @extend .app-debug-border;
-    }
-    height: calc(100vh - $app-navbar-height - $app-footer-height);
+    margin: 0 !important;
+    padding: 0 !important;
+
+    // @if ($app-debug) {
+    //   @extend .app-debug-border;
+    // }
+    // height: calc(100vh - $app-navbar-height - $app-footer-height);
+
     .app-content {
       @if ($app-debug) {
         @extend .app-debug-border;
         background-color: darkred;
+        margin-top: calc($app-navbar-height + calc($app-debug-border * 2));
+        margin-bottom: calc($app-footer-height + calc($app-debug-border * 2));
+      } @else {
+        margin-top: calc($app-navbar-height);
+        margin-bottom: calc($app-footer-height);
       }
+      padding: $app-padding;
+      transition: $app-transition;
+      // Margin or Padding
+    }
+  }
+}
+
+html.app-sidebar-start-show {
+  .row {
+    .app-content {
+      transition: 0;
+      margin-left: $app-sidebar-width;
+    }
+  }
+}
+
+html.app-sidebar-end-show {
+  .row {
+    .app-content {
+      transition: 0;
+      margin-right: $app-sidebar-width;
     }
   }
 }
 
 // #region Navbars
+@include color-mode(light) {
+  .navbar {
+    background: rgba($light, 0.9);
+  }
+}
+@include color-mode(dark) {
+  .navbar {
+    background: rgba($dark, 0.9);
+  }
+}
 
 .navbar {
+  @extend .shadow;
+  transition: $app-transition * 2;
+  @if ($app-debug) {
+    @extend .app-debug-border;
+  }
   .container,
   .container-fluid {
-    padding-left: 0;
-    padding-right: 0;
+    @if ($app-debug) {
+      opacity: 1 !important;
+    }
+    padding: 0;
+    margin: 0;
+
+    .navbar-brand {
+      @extend .ms-3;
+    }
   }
 
   .navbar-toggler {
@@ -58,74 +116,69 @@
     border-color: $gray-200;
   }
 }
-
-.navbar.fixed-top {
-  @if ($app-debug) {
-    opacity: 0.4;
-    @extend .app-debug-border;
-  }
-  height: $app-navbar-height;
-  .container,
-  .container-fluid {
-    button:not(:last-child) {
-      margin-right: 0.4rem;
-    }
-  }
-}
-
+.navbar.fixed-top,
 .navbar.sticky-top {
-  @if ($app-debug) {
-    opacity: 0.4;
-    @extend .app-debug-border;
-  }
-  height: $app-navbar-height;
+  @extend .border-bottom;
+}
+.navbar.fixed-bottom.shadow {
+  @extend .border-top;
+}
+.navbar.fixed-bottom.shadow-sm {
+  box-shadow: 0 -0.125rem 0.25rem rgba($black, 0.075);
+}
+.navbar.fixed-bottom.shadow {
+  box-shadow: 0 -0.5rem 1rem rgba($black, 0.15) !important;
 }
 
-.navbar.fixed-bottom {
-  @if ($app-debug) {
-    opacity: 0.4;
-    @extend .app-debug-border;
-  }
-  min-height: $app-footer-height !important;
-  height: $app-footer-height !important;
-}
 // #endregion
 
 // #region Sidebars
 
-.app-sidebar-start {
-  @if ($app-debug) {
-    @extend .app-debug-border;
-  }
-  min-width: 300px;
-  max-width: 300px;
-  width: 300px;
-}
-.app-sidebar-start.show {
-  transition: $app-transition ease-in;
-  opacity: 1;
-  max-width: 300px;
-}
-.app-sidebar-start.hide {
-  transition: $app-transition ease-out;
-  opacity: 0;
-  margin-left: -300px;
+.offcanvas {
+  padding: $app-padding;
+  min-width: $app-sidebar-width;
+  max-width: $app-sidebar-width;
+  width: $app-sidebar-width;
 }
 
-.app-sidebar-end {
+.app-sidebar {
   @if ($app-debug) {
     @extend .app-debug-border;
   }
-  max-width: 300px;
+  @extend .bg-body, .shadow;
+  padding: $app-padding;
+  min-width: $app-sidebar-width;
+  max-width: $app-sidebar-width;
+  width: $app-sidebar-width;
+  @if ($app-debug) {
+    top: calc($app-navbar-height + calc($app-debug-border * 2));
+    bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
+  } @else {
+    top: calc($app-navbar-height);
+    bottom: $app-footer-height;
+  }
 }
-.app-sidebar-end.show {
+.app-sidebar.show {
   transition: $app-transition ease-in;
   opacity: 1;
-  max-width: 300px;
 }
-.app-sidebar-end.hide {
+.app-sidebar {
   transition: $app-transition ease-out;
-  opacity: 0;
-  margin-right: -300px;
+  opacity: 0.6;
 }
+.app-sidebar-start.show {
+  @extend .border-end;
+  left: 0;
+}
+.app-sidebar-start {
+  left: -($app-sidebar-width);
+}
+.app-sidebar-end.show {
+  @extend .border-start;
+  right: 0;
+}
+.app-sidebar-end {
+  right: -($app-sidebar-width);
+}
+
 // #endregion

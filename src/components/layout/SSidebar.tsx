@@ -1,9 +1,12 @@
-const Sidebar = () => (
-  <>
-    <div className="vh-100 bg-body-tertiary position-fixed">
-      SSidebar
-      <br />
-    </div>
-  </>
+import React from 'react'
+
+const SSidebar = () => (
+  <div
+    id="app-sidebar-start"
+    className="app-sidebar app-sidebar-start position-fixed"
+  >
+    SSidebar
+  </div>
 )
-export default Sidebar
+
+export default SSidebar

@@ -1,5 +1,5 @@
 const Footer = () => (
-  <nav className="navbar fixed-bottom shadow bg-body-tertiary">
+  <nav className="navbar fixed-bottom shadow">
     <div className="container-fluid">
       <div className="d-flex justify-content-start align-items-center">
         <button

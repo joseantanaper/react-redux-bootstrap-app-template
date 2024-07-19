@@ -22,9 +22,9 @@ const App = () => (
         <div className="app-content col">
           <LoremIpsum />
         </div>
-        <div id="app-sidebar-end" className="app-sidebar-end shadow col show">
+        {/* <div id="app-sidebar-end" className="app-sidebar-end shadow col show">
           SidebarEnd
-        </div>
+        </div> */}
       </div>
     </div>
   </div>
