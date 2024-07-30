@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { test } from '@app/slice/appSlice'
+import Icon from '../common/Icon'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 
@@ -14,6 +15,48 @@ const Navbar = () => {
     const res = dispatch(test())
     console.log(res)
   }, [])
+
+  const leftArea = () => {
+    const buttons = [
+      { className: 'btn', onClick: () => toggleSSidebar(false) },
+      { className: 'btn', onClick: () => toggleSSidebar(true) },
+      { className: 'btn', toggle: 'offcanvasStart' },
+    ]
+    return (
+      <div className="d-flex align-items-center justify-content-start">
+        <div className="btn-group">
+          {buttons.map((button) => (
+            <>
+              <button
+                className={`${button.className} d-block d-md-none`}
+                type="button"
+                onClick={() => button && button?.onClick && button.onClick()}
+                data-bs-toggle={button?.toggle ? 'offcanvas' : undefined}
+                data-bs-target={
+                  button?.toggle ? '#'.concat(button?.toggle) : undefined
+                }
+                aria-controls={button?.toggle ? button?.toggle : undefined}
+              >
+                <Icon />
+              </button>
+              <button
+                className={`navbar-toggler d-none d-md-block`}
+                type="button"
+                onClick={() => button && button?.onClick && button.onClick()}
+                data-bs-toggle={button?.toggle ? 'offcanvas' : undefined}
+                data-bs-target={
+                  button?.toggle ? '#'.concat(button?.toggle) : undefined
+                }
+                aria-controls={button?.toggle ? button?.toggle : undefined}
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            </>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   const toggleSSidebar = (contentDisplacement = false) => {
     console.log(
@@ -56,68 +99,52 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar fixed-top shadow">
+      <nav className="navbar fixed-top">
         <div className="container-fluid">
           <div className="d-flex align-items-center justify-content-start">
-            <button
-              className="navbar-toggler"
-              type="button"
-              onClick={() => toggleSSidebar(false)}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <button
-              className="navbar-toggler"
-              type="button"
-              onClick={() => toggleSSidebar(true)}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasStart"
-              aria-controls="offcanvasStart"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <a className="navbar-brand" href="#">
+            {leftArea()}
+          </div>
+          <div className="d-flex align-items-center justify-content-between">
+            <a className="navbar-brand d-none d-md-block" href=".">
               Pixel Perfect App Template
             </a>
           </div>
           <div className="d-flex align-items-center justify-content-end">
-            <button
-              className="me-5 btn btn-primary"
-              type="button"
-              onClick={toggleTheme}
-            >
-              Theme
-            </button>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasEnd"
-              aria-controls="offcanvasEnd"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+            <div className="btn-group">
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={toggleTheme}
+              >
+                <Icon />
+              </button>
+            </div>
+            <div className="btn-group">
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasEnd"
+                aria-controls="offcanvasEnd"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-            <button
-              className="navbar-toggler"
-              type="button"
-              onClick={() => toggleESidebar(true)}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <button
-              className="navbar-toggler"
-              type="button"
-              onClick={() => toggleESidebar(false)}
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+              <button
+                className="navbar-toggler"
+                type="button"
+                onClick={() => toggleESidebar(true)}
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <button
+                className="navbar-toggler"
+                type="button"
+                onClick={() => toggleESidebar(false)}
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            </div>
           </div>
         </div>
       </nav>

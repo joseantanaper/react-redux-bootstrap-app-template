@@ -1,0 +1,28 @@
+.btn:not(.btn-sm, .btn-lg) {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px !important;
+    height: 16px !important;
+    // position: relative;
+    // align-items: center;
+    // justify-content: center;
+    // vertical-align: middle;
+    // margin: auto;
+  }
+}
+
+.btn-group:first-child,
+.btn-group + .btn-group {
+  @extend .ms-1;
+}

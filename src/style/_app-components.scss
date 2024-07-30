@@ -6,6 +6,33 @@
   padding: 0 !important;
 }
 
+.app-debug-label {
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  font-weight: 100;
+  background: rgba(lime, 0.4);
+  position: absolute;
+  pointer-events: none;
+
+  margin: 0;
+  padding: 1px 6px;
+  border: 1px solid black;
+  top: 0;
+  right: 0;
+  content: attr(class);
+}
+
+@include color-mode(dark) {
+  .app-debug-label {
+    color: white;
+    text-shadow: 0 1px 0 black;
+  }
+}
+@include color-mode(light) {
+  color: black;
+  text-shadow: 0 1px 0 white;
+}
+
 .app-main {
   // overflow-y: scroll;
   // width: 100vw;
@@ -80,11 +107,17 @@ html.app-sidebar-end-show {
 .navbar {
   @extend .shadow;
   transition: $app-transition * 2;
+
   @if ($app-debug) {
     @extend .app-debug-border;
+    &:after {
+      @extend .app-debug-label;
+    }
   }
+
   .container,
   .container-fluid {
+    @extend .d-flex, .flex-nowrap;
     @if ($app-debug) {
       opacity: 1 !important;
     }
