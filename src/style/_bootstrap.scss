@@ -1,12 +1,5 @@
 .btn:not(.btn-sm, .btn-lg) {
-  width: 42px;
-  min-width: 42px;
-  height: 42px;
-  min-height: 42px;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend .bsx-btn;
 
   svg {
     display: flex;
@@ -22,7 +15,13 @@
   }
 }
 
-.btn-group:first-child,
-.btn-group + .btn-group {
-  @extend .ms-1;
+.btn-group {
+  @extend .bsx-btn-group;
+}
+.btn-group + .btn-group:not(:last-child) {
+  @extend .me-1;
+}
+
+.navbar-toggler {
+  @extend .bsx-toggler;
 }

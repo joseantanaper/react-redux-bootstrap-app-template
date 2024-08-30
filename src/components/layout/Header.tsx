@@ -5,7 +5,7 @@ import Icon from '../common/Icon'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 
-const Navbar = () => {
+const Header = () => {
   const dispatch = useAppDispatch()
 
   const sidebarStart = 'app-sidebar-start'
@@ -194,4 +194,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Header

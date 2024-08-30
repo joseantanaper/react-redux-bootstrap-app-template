@@ -1,5 +1,6 @@
 import '@style/base.scss'
-import Navbar from '@components/layout/Navbar'
+import Header from '@/components/layout/Header'
+import Navbar from '@/components/common/Navbar'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 import Footer from '@components/layout/Footer'
@@ -8,6 +9,7 @@ import LoremIpsum from '@components/common/LoremIpsum'
 const App = () => (
   <div className="app">
     <Navbar />
+    {/* <Header /> */}
     {/* <SSidebar />
       <ESidebar /> */}
     <Footer />
