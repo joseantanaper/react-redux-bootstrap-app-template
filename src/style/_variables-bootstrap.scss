@@ -11,13 +11,19 @@ $offcanvas-horizontal-width: 300px;
 // $btn-padding-y: 10px;
 // $btn-padding-x: 0;
 
+.bsx-btn-group + .bsx-btn-group {
+  // Good or not???
+  margin-left: -$btn-margin;
+}
+
 .bsx-btn-group {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
 
   .btn:first-child {
-    margin-left: calc($btn-margin);
+    margin-left: $btn-margin;
   }
   .btn:last-child {
     margin-right: $btn-margin;
@@ -33,10 +39,8 @@ $offcanvas-horizontal-width: 300px;
       .btn-light,
       .btn-dark
     ) {
-    border-left-width: calc($input-btn-border-width / 2);
+    border-left-width: calc($input-btn-border-width);
     border-left-color: rgba(var(--bs-secondary-bg-rgb), 1);
-    z-index: 1;
-    /* Avoid inconsistent border left */
   }
 
   .btn
@@ -50,30 +54,41 @@ $offcanvas-horizontal-width: 300px;
       .btn-outline-light,
       .btn-outline-dark
     ) {
-    // margin-left: 1px !important;
-    border-left-width: calc($input-btn-border-width / 2);
+    border-left-width: calc($input-btn-border-width);
     border-left-color: transparent;
-    z-index: 1;
     /* Avoid inconsistent border left */
+  }
+
+  .navbar-toggler + .btn {
+    margin-left: 0 !important;
   }
 }
 
 .bsx-btn,
 .bsx-toggler {
-  vertical-align: middle;
+  // vertical-align: middle;
   display: flex;
   align-items: center;
   justify-content: center;
+  svg {
+    // filter: drop-shadow(0 1px 0 rgba(var(--bs-secondary-bg-rgb), 1));
+  }
+  span {
+    margin-left: $btn-margin;
+    // text-shadow: 0 1px 0 rgba(var(--bs-secondary-bg-rgb), 1);
+  }
 }
 .bsx-btn {
-  width: $btn-size !important;
+  // width: $btn-size !important;
   min-width: $btn-size !important;
   height: $btn-size !important;
   min-height: $btn-size !important;
+  max-height: $btn-size !important;
+  z-index: 1; /* Avoid border disappear on hover */
 }
 .bsx-toggler {
-  width: $toggler-size;
   min-width: $toggler-size;
   height: $toggler-size;
   min-height: $toggler-size;
+  max-height: $toggler-size;
 }

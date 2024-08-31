@@ -1,22 +1,20 @@
 import React from 'react'
+import { type Btn } from '../types'
 import Icon from './Icon'
 
-const Button = ({
-  className = undefined,
-  onClick = () => undefined,
-  toggleId = '',
-}) => {
+const Button = (button: Btn) => {
   return (
     // d-block d-md-none
     <button
-      className={`${toggleId ? 'navbar-toggler' : 'btn btn-danger'}`}
+      className={`${button.toggleId ? 'navbar-toggler' : 'btn'}${button.className ? ' btn-'.concat(button.className) : ''}`}
       type="button"
-      onClick={() => (onClick ? onClick() : undefined)}
-      data-bs-toggle={toggleId ? 'offcanvas' : undefined}
-      data-bs-target={toggleId ? '#'.concat(toggleId) : undefined}
-      aria-controls={toggleId ? toggleId : undefined}
+      onClick={() => (button.onClick ? button.onClick() : undefined)}
+      data-bs-toggle={button.toggleId ? 'offcanvas' : undefined}
+      data-bs-target={button.toggleId ? '#'.concat(button.toggleId) : undefined}
+      aria-controls={button.toggleId ? button.toggleId : undefined}
     >
       <Icon />
+      {button.label && <span>{button.label}</span>}
     </button>
   )
 }

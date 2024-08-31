@@ -103,32 +103,28 @@ const Navbar = ({ position = 'app-sidebar-start' }) => {
       <nav className="navbar fixed-top">
         <div className="container-fluid">
           <div className="d-flex align-items-center justify-content-start">
+            <Button toggleId="a" />
             <div className="btn-group">
               <Button />
               <Button />
               <Button />
-              <Button />
-              {/* <Button toggleId={'okok'} /> */}
-              <Button />
-              <Button />
-              <Button />
-              <Button />
-              <Button />
-              <Button />
-              <Button />
-              <Button />
-              {/* <Button toggleId={'okok'} /> */}
-              <Button />
-              <Button />
-              <Button />
-              <Button />
+            </div>
+            <div className="btn-group">
+              <Button label="Aa" />
+              <Button label="Bb" />
+              <Button label="Cc" />
+            </div>
+            <div className="btn-group">
+              <Button className="danger" />
+              <Button className="success" />
+              <Button className="primary" />
             </div>
           </div>
-          <div className="d-flex align-items-center justify-content-between">
-            <a className="navbar-brand d-none d-md-block" href=".">
-              Pixel Perfect App Template
-            </a>
-          </div>
+
+          <a className="navbar-brand d-none d-md-block w-100" href=".">
+            Pixel Perfect App Template
+          </a>
+
           <div className="d-flex align-items-center justify-content-end">
             <div className="btn-group">
               <button

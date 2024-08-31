@@ -106,7 +106,7 @@ html.app-sidebar-end-show {
 
 .navbar {
   @extend .shadow;
-  transition: $app-transition * 2;
+  // transition: $app-transition * 2;
 
   @if ($app-debug) {
     @extend .app-debug-border;
@@ -125,7 +125,11 @@ html.app-sidebar-end-show {
     margin: 0;
 
     .navbar-brand {
-      @extend .ms-3;
+      @extend .mx-3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: start;
+      height: $btn-size;
     }
   }
 
