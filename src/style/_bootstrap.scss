@@ -24,4 +24,8 @@
 
 .navbar-toggler {
   @extend .bsx-toggler;
+  // width: 50px;
+  .navbar-toggler-icon {
+    margin: 0;
+  }
 }

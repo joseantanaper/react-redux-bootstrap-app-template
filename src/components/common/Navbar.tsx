@@ -5,8 +5,9 @@ import Icon from '../common/Icon'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 import Button from './Button'
+import { type NavbarParam } from '../types'
 
-const Navbar = ({ position = 'app-sidebar-start' }) => {
+const Navbar = (navbar: NavbarParam) => {
   const dispatch = useAppDispatch()
 
   const sidebarStart = 'app-sidebar-start'
@@ -103,64 +104,23 @@ const Navbar = ({ position = 'app-sidebar-start' }) => {
       <nav className="navbar fixed-top">
         <div className="container-fluid">
           <div className="d-flex align-items-center justify-content-start">
-            <Button toggleId="a" />
-            <div className="btn-group">
-              <Button />
-              <Button />
-              <Button />
-            </div>
-            <div className="btn-group">
-              <Button label="Aa" />
-              <Button label="Bb" />
-              <Button label="Cc" />
-            </div>
-            <div className="btn-group">
-              <Button className="danger" />
-              <Button className="success" />
-              <Button className="primary" />
-            </div>
+            {navbar.startNodes && navbar.startNodes.map((node) => node)}
           </div>
 
-          <a className="navbar-brand d-none d-md-block w-100" href=".">
-            Pixel Perfect App Template
-          </a>
+          {navbar.brand && (
+            <a className="navbar-brand d-none d-md-block w-100 " href=".">
+              <div className="text-nowrap overflow-hidden text-truncate opacity">
+                {Array.isArray(navbar.brand) ? (
+                  navbar.brand.map((brand) => <span>{brand}</span>)
+                ) : (
+                  <span>{navbar.brand}</span>
+                )}
+              </div>
+            </a>
+          )}
 
-          <div className="d-flex align-items-center justify-content-end">
-            <div className="btn-group">
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={toggleTheme}
-              >
-                <Icon />
-              </button>
-            </div>
-            <div className="btn-group">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasEnd"
-                aria-controls="offcanvasEnd"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-
-              <button
-                className="navbar-toggler"
-                type="button"
-                onClick={() => toggleESidebar(true)}
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <button
-                className="navbar-toggler"
-                type="button"
-                onClick={() => toggleESidebar(false)}
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-            </div>
+          <div className="d-flex align-items-center justify-content-start">
+            {navbar.endNodes && navbar.endNodes.map((node) => node)}
           </div>
         </div>
       </nav>

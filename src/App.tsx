@@ -1,6 +1,7 @@
 import '@style/base.scss'
 import Header from '@/components/layout/Header'
 import Navbar from '@/components/common/Navbar'
+import Button from './components/common/Button'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 import Footer from '@components/layout/Footer'
@@ -8,7 +9,16 @@ import LoremIpsum from '@components/common/LoremIpsum'
 
 const App = () => (
   <div className="app">
-    <Navbar />
+    <Header />
+
+    {/* <Navbar
+      startNodes={[
+        <Button toggleId="a" />,
+        <Button toggleId="a" />,
+        <Button toggleId="a" />,
+      ]}
+      brand="# Pixel Perfect App Template"
+    /> */}
     {/* <Header /> */}
     {/* <SSidebar />
       <ESidebar /> */}

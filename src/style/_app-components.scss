@@ -105,7 +105,7 @@ html.app-sidebar-end-show {
 }
 
 .navbar {
-  @extend .shadow;
+  @extend .shadow-sm;
   // transition: $app-transition * 2;
 
   @if ($app-debug) {
@@ -124,12 +124,34 @@ html.app-sidebar-end-show {
     padding: 0;
     margin: 0;
 
+    color: blue;
+    float: left;
+
+    .d-flex + a.navbar-brand {
+      border-left: $input-btn-border-width solid var(--bs-secondary-bg);
+    }
+
     .navbar-brand {
-      @extend .mx-3;
-      display: inline-flex;
-      align-items: center;
-      justify-content: start;
-      height: $btn-size;
+      @extend .px-3;
+      display: flex;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: $toggler-size;
+      min-height: $toggler-size;
+      margin: 0;
+      color: var(--bs-border-color);
+      div {
+        span:first-child {
+          // background: yellow;
+          color: var(--bs-emphasis-color);
+        }
+
+        span:nth-child(2) {
+          color: var(--bs-tertiary-color);
+          margin-left: 1rem;
+          // background: orange;
+        }
+      }
     }
   }
 
@@ -171,13 +193,7 @@ html.app-sidebar-end-show {
 
 // #region Sidebars
 
-.offcanvas {
-  padding: $app-padding;
-  min-width: $app-sidebar-width;
-  max-width: $app-sidebar-width;
-  width: $app-sidebar-width;
-}
-
+.offcanvas,
 .app-sidebar {
   @if ($app-debug) {
     @extend .app-debug-border;
@@ -191,8 +207,8 @@ html.app-sidebar-end-show {
     top: calc($app-navbar-height + calc($app-debug-border * 2));
     bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
   } @else {
-    top: calc($app-navbar-height);
-    bottom: $app-footer-height;
+    top: $app-navbar-height !important;
+    bottom: $app-footer-height !important;
   }
 }
 .app-sidebar.show {

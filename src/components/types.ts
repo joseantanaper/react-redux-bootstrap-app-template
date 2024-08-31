@@ -1,3 +1,5 @@
+import { type ReactNode } from 'react'
+
 type BtnColor =
   | 'primary'
   | 'secondary'
@@ -17,9 +19,19 @@ type BtnColor =
   | 'outline-link'
   | undefined
 
-export interface Btn {
+type NavbarPosition = 'fixed-top' | 'fixed-bottom'
+
+export interface BtnParam {
   className?: BtnColor
   onClick?: Function | undefined
   toggleId?: string | undefined
   label?: string | undefined
+  icon?: string | undefined
+}
+
+export interface NavbarParam {
+  position?: NavbarPosition
+  startNodes?: ReactNode[] | undefined
+  brand?: string | string[] | undefined
+  endNodes?: ReactNode[] | undefined
 }

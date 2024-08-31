@@ -1,8 +1,8 @@
 import React from 'react'
-import { type Btn } from '../types'
+import { type BtnParam } from '../types'
 import Icon from './Icon'
 
-const Button = (button: Btn) => {
+const Button = (button: BtnParam) => {
   return (
     // d-block d-md-none
     <button
@@ -13,7 +13,12 @@ const Button = (button: Btn) => {
       data-bs-target={button.toggleId ? '#'.concat(button.toggleId) : undefined}
       aria-controls={button.toggleId ? button.toggleId : undefined}
     >
-      <Icon />
+      {button.toggleId && !button.icon ? (
+        <span className="navbar-toggler-icon"></span>
+      ) : (
+        <Icon />
+      )}
+
       {button.label && <span>{button.label}</span>}
     </button>
   )

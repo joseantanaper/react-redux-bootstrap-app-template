@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { test } from '@app/slice/appSlice'
 import Icon from '../common/Icon'
+import Navbar from '../common/Navbar'
+import Button from '../common/Button'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 
@@ -98,99 +100,118 @@ const Header = () => {
   }
 
   return (
-    <>
-      <nav className="navbar fixed-top">
-        <div className="container-fluid">
-          <div className="d-flex align-items-center justify-content-start">
-            {leftArea()}
-          </div>
-          <div className="d-flex align-items-center justify-content-between">
-            <a className="navbar-brand d-none d-md-block" href=".">
-              Pixel Perfect App Template
-            </a>
-          </div>
-          <div className="d-flex align-items-center justify-content-end">
-            <div className="btn-group">
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={toggleTheme}
-              >
-                <Icon />
-              </button>
-            </div>
-            <div className="btn-group">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasEnd"
-                aria-controls="offcanvasEnd"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
+    <Navbar
+      brand={['React Redux App', 'Pixel Perfect Template']}
+      startNodes={[
+        <Button toggleId="offcanvasStart" />,
+        <div className="btn-group">
+          <Button onClick={() => toggleSSidebar(false)} />
+          <Button onClick={() => toggleSSidebar(true)} />
+        </div>,
+      ]}
+      endNodes={[
+        <div className="btn-group">
+          <Button onClick={() => toggleESidebar(false)} />
+          <Button onClick={() => toggleESidebar(true)} />
+        </div>,
 
-              <button
-                className="navbar-toggler"
-                type="button"
-                onClick={() => toggleESidebar(true)}
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <button
-                className="navbar-toggler"
-                type="button"
-                onClick={() => toggleESidebar(false)}
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+        <Button toggleId="offcanvasEnd" />,
+      ]}
+    />
 
-      <SSidebar />
+    // <>
+    //   <nav className="navbar fixed-top">
+    //     <div className="container-fluid">
+    //       <div className="d-flex align-items-center justify-content-start">
+    //         {leftArea()}
+    //       </div>
+    //       <div className="d-flex align-items-center justify-content-between">
+    //         <a className="navbar-brand d-none d-md-block" href=".">
+    //           Pixel Perfect App Template
+    //         </a>
+    //       </div>
+    //       <div className="d-flex align-items-center justify-content-end">
+    //         <div className="btn-group">
+    //           <button
+    //             className="btn btn-primary"
+    //             type="button"
+    //             onClick={toggleTheme}
+    //           >
+    //             <Icon />
+    //           </button>
+    //         </div>
+    //         <div className="btn-group">
+    //           <button
+    //             className="navbar-toggler"
+    //             type="button"
+    //             data-bs-toggle="offcanvas"
+    //             data-bs-target="#offcanvasEnd"
+    //             aria-controls="offcanvasEnd"
+    //           >
+    //             <span className="navbar-toggler-icon"></span>
+    //           </button>
 
-      <ESidebar />
+    //           <button
+    //             className="navbar-toggler"
+    //             type="button"
+    //             onClick={() => toggleESidebar(true)}
+    //           >
+    //             <span className="navbar-toggler-icon"></span>
+    //           </button>
+    //           <button
+    //             className="navbar-toggler"
+    //             type="button"
+    //             onClick={() => toggleESidebar(false)}
+    //           >
+    //             <span className="navbar-toggler-icon"></span>
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </nav>
 
-      <div
-        className="offcanvas offcanvas-start shadow"
-        data-bs-scroll="true"
-        tabIndex={-1}
-        id="offcanvasStart"
-        aria-labelledby="offcanvasStart"
-      >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasStartLabel">
-            Backdrop with scrolling
-          </h5>
-        </div>
-        <div className="offcanvas-body">
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
-        </div>
-      </div>
+    //   <SSidebar />
 
-      <div
-        className="offcanvas offcanvas-end shadow"
-        data-bs-scroll="true"
-        tabIndex={-1}
-        id="offcanvasEnd"
-        aria-labelledby="offcanvasEnd"
-      >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasEndLabel">
-            Backdrop with scrolling
-          </h5>
-        </div>
-        <div className="offcanvas-body">
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
-        </div>
-      </div>
-    </>
+    //   <ESidebar />
+
+    //   <div
+    //     className="offcanvas offcanvas-start shadow"
+    //     data-bs-scroll="true"
+    //     tabIndex={-1}
+    //     id="offcanvasStart"
+    //     aria-labelledby="offcanvasStart"
+    //   >
+    //     <div className="offcanvas-header">
+    //       <h5 className="offcanvas-title" id="offcanvasStartLabel">
+    //         Backdrop with scrolling
+    //       </h5>
+    //     </div>
+    //     <div className="offcanvas-body">
+    //       <p>
+    //         Try scrolling the rest of the page to see this option in action.
+    //       </p>
+    //     </div>
+    //   </div>
+
+    //   <div
+    //     className="offcanvas offcanvas-end shadow"
+    //     data-bs-scroll="true"
+    //     tabIndex={-1}
+    //     id="offcanvasEnd"
+    //     aria-labelledby="offcanvasEnd"
+    //   >
+    //     <div className="offcanvas-header">
+    //       <h5 className="offcanvas-title" id="offcanvasEndLabel">
+    //         Backdrop with scrolling
+    //       </h5>
+    //     </div>
+    //     <div className="offcanvas-body">
+    //       <p>
+    //         Try scrolling the rest of the page to see this option in action.
+    //       </p>
+    //     </div>
+    //   </div>
+    // </>
   )
 }
 

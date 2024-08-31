@@ -2,6 +2,8 @@ $input-btn-border-width: var(--bs-border-width);
 $navbar-padding-y: 0;
 $border-radius: 0;
 
+$navbar-brand-padding-y: 9px;
+
 $toggler-size: 50px;
 $btn-margin: 4px;
 $btn-size: calc($toggler-size - ($btn-margin * 2));
@@ -11,9 +13,10 @@ $offcanvas-horizontal-width: 300px;
 // $btn-padding-y: 10px;
 // $btn-padding-x: 0;
 
-.bsx-btn-group + .bsx-btn-group {
+.bsx-btn-group + :is(.bsx-btn-group, .navbar-brand) {
   // Good or not???
-  margin-left: -$btn-margin;
+  // margin-left: -$btn-margin;
+  border-left: $input-btn-border-width solid var(--bs-secondary-bg);
 }
 
 .bsx-btn-group {
@@ -40,7 +43,7 @@ $offcanvas-horizontal-width: 300px;
       .btn-dark
     ) {
     border-left-width: calc($input-btn-border-width);
-    border-left-color: rgba(var(--bs-secondary-bg-rgb), 1);
+    border-left-color: var(--bs-body-bg);
   }
 
   .btn
