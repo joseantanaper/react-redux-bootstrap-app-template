@@ -2,14 +2,14 @@ $app-debug: false;
 $app-debug-border: 20px;
 $app-debug-border-color: blue;
 
-$app-transition: 0.3s;
+$app-transition: 0.25s;
 $app-navbar-height: 50px;
 $app-footer-height: 50px;
 
 $app-padding: 20px;
 
-$app-sidebar-width: 360px;
-// $app-sidebar-bg: red;
+$app-offcanvas-width: 360px;
+// $app-offcanvas-bg: red;
 
 .app-debug-border {
   border-top: $app-debug-border solid white;

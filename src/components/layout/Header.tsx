@@ -4,90 +4,28 @@ import { test } from '@app/slice/appSlice'
 import Icon from '../common/Icon'
 import Navbar from '../common/Navbar'
 import Button from '../common/Button'
+import Sidebar from '../common/Sidebar'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
+import Offcanvas from '../common/Offcanvas'
 
 const Header = () => {
   const dispatch = useAppDispatch()
 
-  const sidebarStart = 'app-sidebar-start'
-  const sidebarEnd = 'app-sidebar-end'
+  const sidebarStart = 'app-offcanvas-start'
+  const sidebarEnd = 'app-offcanvas-end'
 
   useEffect(() => {
     const res = dispatch(test())
     console.log(res)
   }, [])
 
-  const leftArea = () => {
-    const buttons = [
-      { className: 'btn', onClick: () => toggleSSidebar(false) },
-      { className: 'btn', onClick: () => toggleSSidebar(true) },
-      { className: 'btn', toggle: 'offcanvasStart' },
-    ]
-    return (
-      <div className="d-flex align-items-center justify-content-start">
-        <div className="btn-group">
-          {buttons.map((button) => (
-            <>
-              <button
-                className={`${button.className} d-block d-md-none`}
-                type="button"
-                onClick={() => button && button?.onClick && button.onClick()}
-                data-bs-toggle={button?.toggle ? 'offcanvas' : undefined}
-                data-bs-target={
-                  button?.toggle ? '#'.concat(button?.toggle) : undefined
-                }
-                aria-controls={button?.toggle ? button?.toggle : undefined}
-              >
-                <Icon />
-              </button>
-              <button
-                className={`navbar-toggler d-none d-md-block`}
-                type="button"
-                onClick={() => button && button?.onClick && button.onClick()}
-                data-bs-toggle={button?.toggle ? 'offcanvas' : undefined}
-                data-bs-target={
-                  button?.toggle ? '#'.concat(button?.toggle) : undefined
-                }
-                aria-controls={button?.toggle ? button?.toggle : undefined}
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-            </>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
   const toggleSSidebar = (contentDisplacement = false) => {
-    console.log(
-      'toggleSSidebar',
-      document.getElementById(sidebarStart)?.classList
-    )
-    if (document.getElementById(sidebarStart)?.classList.contains('show')) {
-      document.getElementById(sidebarStart)?.classList.remove('show')
-      document.documentElement?.classList.remove('app-sidebar-start-show')
-    } else {
-      document.getElementById(sidebarStart)?.classList.add('show')
-      if (contentDisplacement)
-        document.documentElement?.classList.add('app-sidebar-start-show')
-    }
+    document.getElementById(sidebarStart)?.querySelector('button')?.click()
   }
-
   const toggleESidebar = (contentDisplacement = false) => {
-    console.log(
-      'toggleESidebar',
-      document.getElementById(sidebarEnd)?.classList
-    )
-    if (document.getElementById(sidebarEnd)?.classList.contains('show')) {
-      document.getElementById(sidebarEnd)?.classList.remove('show')
-      document.documentElement?.classList.remove('app-sidebar-end-show')
-    } else {
-      document.getElementById(sidebarEnd)?.classList.add('show')
-      if (contentDisplacement)
-        document.documentElement?.classList.add('app-sidebar-end-show')
-    }
+    console.log('toggleESidebar')
+    document.getElementById(sidebarEnd)?.querySelector('button')?.click()
   }
 
   const toggleTheme = () => {
@@ -100,24 +38,68 @@ const Header = () => {
   }
 
   return (
-    <Navbar
-      brand={['React Redux App', 'Pixel Perfect Template']}
-      startNodes={[
-        <Button toggleId="offcanvasStart" />,
-        <div className="btn-group">
-          <Button onClick={() => toggleSSidebar(false)} />
-          <Button onClick={() => toggleSSidebar(true)} />
-        </div>,
-      ]}
-      endNodes={[
-        <div className="btn-group">
-          <Button onClick={() => toggleESidebar(false)} />
-          <Button onClick={() => toggleESidebar(true)} />
-        </div>,
+    <>
+      <Navbar
+        brand={['React Redux App', 'Pixel Perfect Template']}
+        startNodes={[
+          <div className="btn-group">
+            <Button toggleId="offcanvasStart" />
+            <Button toggleId="offcanvasStartPush" />
+          </div>,
+          <div className="btn-group">
+            <Button onClick={() => toggleSSidebar()} />
+            <Button onClick={() => toggleSSidebar(true)} />
+          </div>,
+        ]}
+        endNodes={[
+          <div className="btn-group">
+            <Button onClick={() => toggleESidebar()} />
+            <Button onClick={() => toggleESidebar(true)} />
+          </div>,
 
-        <Button toggleId="offcanvasEnd" />,
-      ]}
-    />
+          <div className="btn-group">
+            <Button toggleId="offcanvasEnd" />
+            <Button toggleId="offcanvasEndPush" />
+          </div>,
+        ]}
+      />
+
+      <Offcanvas id="offcanvasStart" position="offcanvas-start" />
+      <Offcanvas
+        id="offcanvasStartPush"
+        position="offcanvas-start"
+        pushContent={true}
+      />
+      <Offcanvas id="offcanvasEnd" position="offcanvas-end" />
+      <Offcanvas
+        id="offcanvasEndPush"
+        position="offcanvas-end"
+        pushContent={true}
+      />
+      <Sidebar id="app-offcanvas-start" position="offcanvas-start" />
+      <Sidebar id="app-offcanvas-end" position="offcanvas-end" />
+      {/* <SSidebar />
+      <ESidebar /> */}
+
+      {/* <div
+        className="offcanvas offcanvas-start shadow"
+        data-bs-scroll="true"
+        tabIndex={-1}
+        id="offcanvasStart"
+        aria-labelledby="offcanvasStart"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasStartLabel">
+            Backdrop with scrolling
+          </h5>
+        </div>
+        <div className="offcanvas-body">
+          <p>
+            Try scrolling the rest of the page to see this option in action.
+          </p>
+        </div>
+      </div> */}
+    </>
 
     // <>
     //   <nav className="navbar fixed-top">
@@ -173,25 +155,6 @@ const Header = () => {
     //   <SSidebar />
 
     //   <ESidebar />
-
-    //   <div
-    //     className="offcanvas offcanvas-start shadow"
-    //     data-bs-scroll="true"
-    //     tabIndex={-1}
-    //     id="offcanvasStart"
-    //     aria-labelledby="offcanvasStart"
-    //   >
-    //     <div className="offcanvas-header">
-    //       <h5 className="offcanvas-title" id="offcanvasStartLabel">
-    //         Backdrop with scrolling
-    //       </h5>
-    //     </div>
-    //     <div className="offcanvas-body">
-    //       <p>
-    //         Try scrolling the rest of the page to see this option in action.
-    //       </p>
-    //     </div>
-    //   </div>
 
     //   <div
     //     className="offcanvas offcanvas-end shadow"

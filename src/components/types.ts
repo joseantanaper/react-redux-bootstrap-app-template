@@ -21,6 +21,8 @@ type BtnColor =
 
 type NavbarPosition = 'fixed-top' | 'fixed-bottom'
 
+type OffcanvasPosition = 'offcanvas-start' | 'offcanvas-end'
+
 export interface BtnParam {
   className?: BtnColor
   onClick?: Function | undefined
@@ -34,4 +36,10 @@ export interface NavbarParam {
   startNodes?: ReactNode[] | undefined
   brand?: string | string[] | undefined
   endNodes?: ReactNode[] | undefined
+}
+
+export interface OffcanvasParam {
+  id: string
+  position?: OffcanvasPosition
+  pushContent?: boolean
 }

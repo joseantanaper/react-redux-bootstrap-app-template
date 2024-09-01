@@ -74,20 +74,20 @@
   }
 }
 
-html.app-sidebar-start-show {
+html.app-offcanvas-start-show {
   .row {
     .app-content {
       transition: 0;
-      margin-left: $app-sidebar-width;
+      margin-left: $app-offcanvas-width;
     }
   }
 }
 
-html.app-sidebar-end-show {
+html.app-offcanvas-end-show {
   .row {
     .app-content {
       transition: 0;
-      margin-right: $app-sidebar-width;
+      margin-right: $app-offcanvas-width;
     }
   }
 }
@@ -194,15 +194,15 @@ html.app-sidebar-end-show {
 // #region Sidebars
 
 .offcanvas,
-.app-sidebar {
+.app-offcanvas {
   @if ($app-debug) {
     @extend .app-debug-border;
   }
   @extend .bg-body, .shadow;
   padding: $app-padding;
-  min-width: $app-sidebar-width;
-  max-width: $app-sidebar-width;
-  width: $app-sidebar-width;
+  min-width: $app-offcanvas-width;
+  max-width: $app-offcanvas-width;
+  width: $app-offcanvas-width;
   @if ($app-debug) {
     top: calc($app-navbar-height + calc($app-debug-border * 2));
     bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
@@ -211,27 +211,27 @@ html.app-sidebar-end-show {
     bottom: $app-footer-height !important;
   }
 }
-.app-sidebar.show {
+.app-offcanvas.show {
   transition: $app-transition ease-in;
   opacity: 1;
 }
-.app-sidebar {
+.app-offcanvas {
   transition: $app-transition ease-out;
   opacity: 0.6;
 }
-.app-sidebar-start.show {
+.app-offcanvas-start.show {
   @extend .border-end;
   left: 0;
 }
-.app-sidebar-start {
-  left: -($app-sidebar-width);
+.app-offcanvas-start {
+  left: -($app-offcanvas-width);
 }
-.app-sidebar-end.show {
+.app-offcanvas-end.show {
   @extend .border-start;
   right: 0;
 }
-.app-sidebar-end {
-  right: -($app-sidebar-width);
+.app-offcanvas-end {
+  right: -($app-offcanvas-width);
 }
 
 // #endregion

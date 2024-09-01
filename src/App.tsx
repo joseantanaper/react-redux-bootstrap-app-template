@@ -26,15 +26,15 @@ const App = () => (
     <div className="app-main container-fluid text-center">
       <div className="row">
         {/* <div
-          id="app-sidebar-start"
-          className="app-sidebar-start shadow col show vh-100 position-fixed bg-body"
+          id="app-offcanvas-start"
+          className="app-offcanvas-start shadow col show vh-100 position-fixed bg-body"
         >
           SidebarStart
         </div> */}
         <div className="app-content col">
           <LoremIpsum />
         </div>
-        {/* <div id="app-sidebar-end" className="app-sidebar-end shadow col show">
+        {/* <div id="app-offcanvas-end" className="app-offcanvas-end shadow col show">
           SidebarEnd
         </div> */}
       </div>
