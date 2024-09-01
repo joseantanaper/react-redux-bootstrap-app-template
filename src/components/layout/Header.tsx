@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { test } from '@app/slice/appSlice'
 import Icon from '../common/Icon'
 import Navbar from '../common/Navbar'
 import Button from '../common/Button'
 import Sidebar from '../common/Sidebar'
+import SidebarPlus from '../common/SidebarPlus'
 import SSidebar from '@components/layout/SSidebar'
 import ESidebar from '@components/layout/ESidebar'
 import Offcanvas from '../common/Offcanvas'
@@ -12,8 +13,8 @@ import Offcanvas from '../common/Offcanvas'
 const Header = () => {
   const dispatch = useAppDispatch()
 
-  const sidebarStart = 'app-offcanvas-start'
-  const sidebarEnd = 'app-offcanvas-end'
+  const sidebarStart = useRef<typeof SidebarPlus | null>()
+  const sidebarStartPush = useRef<typeof SidebarPlus | null>()
 
   useEffect(() => {
     const res = dispatch(test())
@@ -21,11 +22,8 @@ const Header = () => {
   }, [])
 
   const toggleSSidebar = (contentDisplacement = false) => {
-    document.getElementById(sidebarStart)?.querySelector('button')?.click()
-  }
-  const toggleESidebar = (contentDisplacement = false) => {
-    console.log('toggleESidebar')
-    document.getElementById(sidebarEnd)?.querySelector('button')?.click()
+    // TODO: Get correct object type (Not any)
+    return (sidebarStart?.current as any)?.toggle()
   }
 
   const toggleTheme = () => {
@@ -47,14 +45,16 @@ const Header = () => {
             <Button toggleId="offcanvasStartPush" />
           </div>,
           <div className="btn-group">
-            <Button onClick={() => toggleSSidebar()} />
-            <Button onClick={() => toggleSSidebar(true)} />
+            <Button onClick={() => (sidebarStart?.current as any)?.toggle()} />
+            <Button
+              onClick={() => (sidebarStartPush?.current as any)?.toggle()}
+            />
           </div>,
         ]}
         endNodes={[
           <div className="btn-group">
-            <Button onClick={() => toggleESidebar()} />
-            <Button onClick={() => toggleESidebar(true)} />
+            <Button />
+            <Button />
           </div>,
 
           <div className="btn-group">
@@ -62,6 +62,18 @@ const Header = () => {
             <Button toggleId="offcanvasEndPush" />
           </div>,
         ]}
+      />
+
+      <SidebarPlus
+        ref={sidebarStart}
+        id="sidebarStart"
+        position="offcanvas-start"
+      />
+      <SidebarPlus
+        ref={sidebarStartPush}
+        id="sidebarStartPush"
+        position="offcanvas-start"
+        pushContent={true}
       />
 
       <Offcanvas id="offcanvasStart" position="offcanvas-start" />
@@ -76,8 +88,7 @@ const Header = () => {
         position="offcanvas-end"
         pushContent={true}
       />
-      <Sidebar id="app-offcanvas-start" position="offcanvas-start" />
-      <Sidebar id="app-offcanvas-end" position="offcanvas-end" />
+
       {/* <SSidebar />
       <ESidebar /> */}
 

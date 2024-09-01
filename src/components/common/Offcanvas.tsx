@@ -12,12 +12,7 @@ const Offcanvas = (offcanvas: OffcanvasParam) => {
           `app-${offcanvas.position}-show`
         )
       })
-      offcanvasRef?.current?.addEventListener('hide.bs.offcanvas', (event) => {
-        console.log('hide')
-        document.documentElement?.classList?.remove(
-          `app-${offcanvas.position}-show`
-        )
-      })
+
       offcanvasRef?.current?.addEventListener('show.bs.offcanvas', (event) => {
         console.log('show')
         document.documentElement?.classList?.add(
@@ -30,7 +25,7 @@ const Offcanvas = (offcanvas: OffcanvasParam) => {
   return (
     <div
       ref={offcanvasRef}
-      className={`offcanvas border${offcanvas.position ? ' '.concat(offcanvas.position) : ' offcanvas-start'}`}
+      className={`offcanvas ${offcanvas.position ? ' '.concat(offcanvas.position) : ' offcanvas-start'}`}
       data-bs-scroll={true}
       data-bs-backdrop={false}
       tabIndex={-1}
