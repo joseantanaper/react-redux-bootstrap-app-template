@@ -1,31 +1,46 @@
-import React, { useRef } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import { type OffcanvasParam } from '../types'
 
-const Sidebar = (sidebar: OffcanvasParam) => {
+const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
   const sidebarRef = useRef<HTMLDivElement | null>(null)
 
+  const test = () => {
+    alert('test')
+  }
+
   const toggle = () => {
-    console.log(sidebar.pushContent)
+    // console.log(sidebar.pushContent)
     if (sidebarRef?.current?.classList.contains('show')) {
       sidebarRef?.current?.classList.remove('show')
       document.documentElement?.classList.remove(
-        `${sidebarRef?.current?.id}-show`
+        `app-${sidebar?.position}-show`
       )
     } else {
       sidebarRef?.current?.classList.add('show')
-      document.documentElement?.classList.add(`${sidebarRef?.current?.id}-show`)
+
+      if (sidebar?.pushContent)
+        document.documentElement?.classList.add(`app-${sidebar?.position}-show`)
     }
+    return true
   }
 
+  useImperativeHandle(ref, () => {
+    return {
+      toggle: toggle,
+    }
+  })
+
+  console.log('sidebar', sidebar?.children)
+
   return (
-    <>
-      <div
-        ref={sidebarRef}
-        id={`app-${sidebar?.position}`}
-        className={`app-offcanvas offcanvas position-fixed app-${sidebar?.position} app-${sidebar?.position}-show`}
-      >
+    <div
+      ref={sidebarRef}
+      id={`${sidebar?.id}`}
+      className={`app-offcanvas position-fixed app-${sidebar?.position} app-${sidebar?.position}-show`}
+    >
+      {sidebar?.title && (
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title">Offcanvas+</h5>
+          <h5 className="offcanvas-title">{sidebar?.title}</h5>
           <button
             type="button"
             className="btn-close d-flex float-end"
@@ -33,19 +48,15 @@ const Sidebar = (sidebar: OffcanvasParam) => {
             // aria-label="Close"
             onClick={toggle}
           ></button>
-          <hr />
-          {/* <button
-              type="button"
-              className="btn-close float-end d-inline-flex"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-              onClick={toggle}
-            ></button> */}
         </div>
-        PUSH: {JSON.stringify(sidebar?.pushContent)}
+      )}
+      <div
+        className={`offcanvas-body${sidebar?.title ? ' '.concat('border-top') : ''}`}
+      >
+        {sidebar?.children}
       </div>
-    </>
+    </div>
   )
-}
+})
 
 export default Sidebar

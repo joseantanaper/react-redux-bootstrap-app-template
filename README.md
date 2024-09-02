@@ -119,3 +119,5 @@ base.scss
 npm install react-lorem-ipsum --save-dev
 ```
 
+## Next.js
+

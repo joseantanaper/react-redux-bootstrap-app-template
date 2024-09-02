@@ -95,12 +95,12 @@ html.app-offcanvas-end-show {
 // #region Navbars
 @include color-mode(light) {
   .navbar {
-    background: rgba($light, 0.9);
+    background: rgba($light, 0.92);
   }
 }
 @include color-mode(dark) {
   .navbar {
-    background: rgba($dark, 0.9);
+    background: rgba($dark, 0.92);
   }
 }
 
@@ -179,14 +179,10 @@ html.app-offcanvas-end-show {
 .navbar.sticky-top {
   @extend .border-bottom;
 }
-.navbar.fixed-bottom.shadow {
-  @extend .border-top;
-}
-.navbar.fixed-bottom.shadow-sm {
-  box-shadow: 0 -0.125rem 0.25rem rgba($black, 0.075);
-}
-.navbar.fixed-bottom.shadow {
-  box-shadow: 0 -0.5rem 1rem rgba($black, 0.15) !important;
+.navbar.fixed-bottom {
+  // @extend .shadow-sm; /* Not working on fixed-bottom */
+  @extend .border-0, .border-top;
+  // box-shadow: 0 -0.125rem 0.25rem rgba($black, 0.075) !important;
 }
 
 // #endregion
@@ -198,11 +194,16 @@ html.app-offcanvas-end-show {
   @if ($app-debug) {
     @extend .app-debug-border;
   }
-  @extend .offcanvas, .border-0, .border-end;
+  @extend .offcanvas, .shadow-sm;
   padding: $app-padding;
   min-width: $app-offcanvas-width;
   max-width: $app-offcanvas-width;
   width: $app-offcanvas-width;
+
+  .offcanvas-header {
+    @extend .border-bottom;
+  }
+
   @if ($app-debug) {
     top: calc($app-navbar-height + calc($app-debug-border * 2));
     bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
@@ -224,6 +225,7 @@ html.app-offcanvas-end-show {
   left: 0;
 }
 .app-offcanvas-start {
+  @extend .border-0, .border-end;
   left: -($app-offcanvas-width);
 }
 .app-offcanvas-end.show {
@@ -231,6 +233,7 @@ html.app-offcanvas-end-show {
   right: 0;
 }
 .app-offcanvas-end {
+  @extend .border-0, .border-start;
   right: -($app-offcanvas-width);
 }
 

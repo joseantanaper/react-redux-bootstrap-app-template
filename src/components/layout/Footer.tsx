@@ -1,27 +1,17 @@
+import React from 'react'
+import Navbar from '../common/Navbar'
+import Button from '../common/Button'
 const Footer = () => (
-  <nav className="navbar fixed-bottom shadow">
-    <div className="container-fluid">
-      <div className="d-flex justify-content-start align-items-center">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasWithBothOptions"
-          aria-controls="offcanvasWithBothOptions"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <a className="navbar-brand" href="#">
-          Footer
-        </a>
-      </div>
-      <div className="justify-content-end">
-        <button className="navbar-toggler" type="button">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </nav>
+  <Navbar
+    brand={['Footer', 'More...']}
+    position="fixed-bottom"
+    endNodes={[
+      <div className="btn-group">
+        <Button toggleId="offcanvasEnd" />
+        <Button toggleId="offcanvasEndPush" />
+      </div>,
+    ]}
+  />
 )
 
 export default Footer

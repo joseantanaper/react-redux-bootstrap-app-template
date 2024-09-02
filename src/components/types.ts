@@ -40,6 +40,8 @@ export interface NavbarParam {
 
 export interface OffcanvasParam {
   id: string
+  title?: string | undefined
   position?: OffcanvasPosition
   pushContent?: boolean
+  children?: ReactNode
 }
