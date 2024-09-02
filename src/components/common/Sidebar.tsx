@@ -43,7 +43,7 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
           <h5 className="offcanvas-title">{sidebar?.title}</h5>
           <button
             type="button"
-            className="btn-close d-flex float-end"
+            className="btn btn-close d-flex float-end"
             // data-bs-dismiss="offcanvas"
             // aria-label="Close"
             onClick={toggle}

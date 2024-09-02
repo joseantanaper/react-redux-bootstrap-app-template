@@ -119,5 +119,8 @@ base.scss
 npm install react-lorem-ipsum --save-dev
 ```
 
-## Next.js
+## React Router
 
+```sh
+npm install react-router-dom
+```
