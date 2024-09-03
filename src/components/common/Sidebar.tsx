@@ -1,8 +1,11 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { type OffcanvasParam } from '../types'
+import Icon from './Icon'
 
 const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
   const sidebarRef = useRef<HTMLDivElement | null>(null)
+
+  const [visible, setVisible] = useState(false)
 
   const test = () => {
     alert('test')
@@ -16,6 +19,7 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
         `app-${sidebar?.position}-show`
       )
     } else {
+      setVisible(true)
       sidebarRef?.current?.classList.add('show')
 
       if (sidebar?.pushContent)
@@ -38,8 +42,10 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
       document.documentElement?.classList.remove(
         `app-${sidebar?.position}-show`
       )
+      setVisible(false)
     } else {
       document.documentElement?.classList.add(`app-${sidebar?.position}-show`)
+      setVisible(true)
     }
     return true
   }
@@ -62,21 +68,35 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
       {sidebar?.title && (
         <div className="offcanvas-header">
           <h5 className="offcanvas-title">{sidebar?.title}</h5>
-          <button
-            type="button"
-            className="btn btn-close d-flex float-end"
-            // data-bs-dismiss="offcanvas"
-            // aria-label="Close"
-            onClick={() => toggleFix()}
-          ></button>
-          <button
+          <div className="btn-group position-absolute end-0">
+            <button
+              type="button"
+              className="btn"
+              // data-bs-dismiss="offcanvas"
+              // aria-label="Close"
+              onClick={() => toggleFix()}
+            >
+              <Icon id={visible ? 'pinFill' : 'pin'} />
+            </button>
+            <button
+              type="button"
+              className="btn"
+              // data-bs-dismiss="offcanvas"
+              // aria-label="Close"
+              onClick={() => toggle()}
+            >
+              <Icon id="close" />
+            </button>
+          </div>
+
+          {/* <button
             type="button"
             className="btn btn-close d-flex float-end"
             // data-bs-dismiss="offcanvas"
             // aria-label="Close"
             style={{ marginLeft: '10px' }}
             onClick={() => toggle(true)}
-          ></button>
+          ></button> */}
         </div>
       )}
       <div

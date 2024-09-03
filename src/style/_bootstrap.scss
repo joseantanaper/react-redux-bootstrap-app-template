@@ -1,4 +1,31 @@
-.btn:not(.btn-sm, .btn-lg) {
+svg {
+  opacity: 0.6;
+}
+
+svg + span {
+  margin-left: 10px;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+}
+
+// svg {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 16px !important;
+//   height: 16px !important;
+//   // position: relative;
+//   // align-items: center;
+//   // justify-content: center;
+//   // vertical-align: middle;
+//   // margin: auto;
+// }
+
+.btn {
+  // .btn:not(.btn-sm, .btn-lg) {
   @extend .bsx-btn;
 
   svg {
@@ -7,11 +34,22 @@
     justify-content: center;
     width: 16px !important;
     height: 16px !important;
+
     // position: relative;
     // align-items: center;
     // justify-content: center;
     // vertical-align: middle;
     // margin: auto;
+  }
+}
+.btn:hover {
+  svg {
+    opacity: 0.9;
+  }
+}
+.btn:active {
+  svg {
+    opacity: 1;
   }
 }
 

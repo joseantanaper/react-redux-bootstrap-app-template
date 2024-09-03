@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import Icon from './Icon'
 
 const Menu = () => {
   return (
@@ -29,19 +30,22 @@ const Menu = () => {
                 className="list-group-item list-group-item-action"
                 aria-current="true"
               >
-                /
+                <Icon id="home" />
+                <span>Home</span>
               </NavLink>
               <NavLink
                 to="/content"
                 className="list-group-item list-group-item-action"
               >
-                Content
+                <Icon id="specialties" />
+                <span>Content</span>
               </NavLink>
               <NavLink
                 to="/about"
                 className="list-group-item list-group-item-action"
               >
-                About
+                <Icon id="about" />
+                <span>About</span>
               </NavLink>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React, { type MouseEvent } from 'react'
-import { type BtnParam } from '../types'
+import { ReactNode } from 'react'
 import Icon from './Icon'
+import { type BtnParam } from '../types'
 
 const Button = (button: BtnParam) => {
   const onClickHandler = (e: MouseEvent) => {
@@ -38,10 +39,11 @@ const Button = (button: BtnParam) => {
     >
       {button.toggleId && !button.icon ? (
         <span className="navbar-toggler-icon"></span>
+      ) : button?.icon ? (
+        <Icon id={button?.icon} />
       ) : (
-        <Icon />
+        <Icon id="none" />
       )}
-
       {button.label && <span>{button.label}</span>}
     </button>
   )

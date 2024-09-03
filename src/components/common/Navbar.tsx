@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch } from '@app/hooks'
 import { test } from '@app/slice/appSlice'
-import Icon from '../common/Icon'
 import { type NavbarParam } from '../types'
 
 const Navbar = (navbar: NavbarParam) => {

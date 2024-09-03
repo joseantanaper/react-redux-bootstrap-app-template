@@ -50,7 +50,10 @@ const Header = () => {
             <Button onClick={() => toggleTheme()} />
           </div>,
           <div className="btn-group">
-            <Button onClick={() => (sidebarEnd?.current as any)?.toggle()} />
+            <Button
+              icon=""
+              onClick={() => (sidebarEnd?.current as any)?.toggle()}
+            />
             <Button
               onClick={() => (sidebarEndPush?.current as any)?.toggle()}
             />

@@ -31,6 +31,19 @@ export interface BtnParam {
   icon?: string | undefined
 }
 
+export interface IconParam {
+  id?:
+    | string
+    | 'none'
+    | 'home'
+    | 'specialties'
+    | 'pin'
+    | 'pinFill'
+    | 'close'
+    | undefined
+  size?: number | undefined
+}
+
 export interface NavbarParam {
   position?: NavbarPosition
   startNodes?: ReactNode[] | undefined
