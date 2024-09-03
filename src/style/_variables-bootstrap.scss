@@ -1,8 +1,27 @@
 $input-btn-border-width: var(--bs-border-width);
 $navbar-padding-y: 0;
 $border-radius: 0;
-
 $navbar-brand-padding-y: 9px;
+
+// $accordion-body-padding-x: 0;
+// $accordion-body-padding-y: 0;
+// $accordion-border-width: 0;
+
+// $offcanvas-padding-x: 0;
+// $offcanvas-padding-y: 0;
+
+$accordion-button-focus-box-shadow: 0 0 0 none;
+$accordion-button-focus-border-color: none;
+$accordion-button-active-bg: none;
+$accordion-border-color: transparent;
+$accordion-transition: 0;
+
+// $list-group-active-color:           $component-active-color;
+// $list-group-active-bg:              $component-active-bg;
+$list-group-item-padding-x: 20px;
+$list-group-border-width: 0;
+// $list-group-border-radius: 15px;
+// $list-group-active-border-color: none;
 
 $toggler-size: 50px;
 $btn-margin: 4px;

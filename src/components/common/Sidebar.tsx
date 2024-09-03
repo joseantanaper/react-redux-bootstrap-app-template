@@ -8,9 +8,9 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
     alert('test')
   }
 
-  const toggle = () => {
+  const toggle = (closeIt = false) => {
     // console.log(sidebar.pushContent)
-    if (sidebarRef?.current?.classList.contains('show')) {
+    if (closeIt || sidebarRef?.current?.classList.contains('show')) {
       sidebarRef?.current?.classList.remove('show')
       document.documentElement?.classList.remove(
         `app-${sidebar?.position}-show`
@@ -24,9 +24,30 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
     return true
   }
 
+  // const toggleClose = () => {
+  //   sidebarRef?.current?.classList.remove('show')
+  //   document.documentElement?.classList.remove(`app-${sidebar?.position}-show`)
+  // }
+
+  const toggleFix = (fixIt = false) => {
+    if (
+      document.documentElement?.classList.contains(
+        `app-${sidebar?.position}-show`
+      )
+    ) {
+      document.documentElement?.classList.remove(
+        `app-${sidebar?.position}-show`
+      )
+    } else {
+      document.documentElement?.classList.add(`app-${sidebar?.position}-show`)
+    }
+    return true
+  }
+
   useImperativeHandle(ref, () => {
     return {
       toggle: toggle,
+      toggleFix: toggleFix,
     }
   })
 
@@ -36,7 +57,7 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
     <div
       ref={sidebarRef}
       id={`${sidebar?.id}`}
-      className={`app-offcanvas position-fixed app-${sidebar?.position} app-${sidebar?.position}-show`}
+      className={`app-offcanvas position-fixed app-${sidebar?.position} app-${sidebar?.position}-show p-0`}
     >
       {sidebar?.title && (
         <div className="offcanvas-header">
@@ -46,12 +67,21 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
             className="btn btn-close d-flex float-end"
             // data-bs-dismiss="offcanvas"
             // aria-label="Close"
-            onClick={toggle}
+            onClick={() => toggleFix()}
+          ></button>
+          <button
+            type="button"
+            className="btn btn-close d-flex float-end"
+            // data-bs-dismiss="offcanvas"
+            // aria-label="Close"
+            style={{ marginLeft: '10px' }}
+            onClick={() => toggle(true)}
           ></button>
         </div>
       )}
       <div
-        className={`offcanvas-body${sidebar?.title ? ' '.concat('border-top') : ''}`}
+        // className={`offcanvas-body${sidebar?.title ? ' '.concat('border-top') : ''}`}
+        className={`offcanvas-body`}
       >
         {sidebar?.children}
       </div>

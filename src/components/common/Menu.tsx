@@ -3,9 +3,9 @@ import { Link, NavLink } from 'react-router-dom'
 
 const Menu = () => {
   return (
-    <div className="accordion" id="accordionExample">
-      <div className="accordion-item">
-        <h2 className="accordion-header">
+    <div className="accordion border-0" id="accordionExample">
+      <div className="accordion-item border-0">
+        <h2 className="accordion-header border-0">
           <button
             className="accordion-button"
             type="button"
@@ -19,11 +19,11 @@ const Menu = () => {
         </h2>
         <div
           id="collapseOne"
-          className="accordion-collapse collapse show"
+          className="accordion-collapse border-0 collapse show"
           data-bs-parent="#accordionExample"
         >
-          <div className="accordion-body">
-            <div className="list-group">
+          <div className="accordion-body border-0 p-0">
+            <div className="list-group ps-3">
               <NavLink
                 to="/"
                 className="list-group-item list-group-item-action"
