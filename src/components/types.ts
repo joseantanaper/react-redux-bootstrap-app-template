@@ -23,24 +23,27 @@ type NavbarPosition = 'fixed-top' | 'fixed-bottom'
 
 type OffcanvasPosition = 'offcanvas-start' | 'offcanvas-end'
 
+type IconId =
+  | string
+  | 'none'
+  | 'home'
+  | 'specialties'
+  | 'pin'
+  | 'pinFill'
+  | 'close'
+
 export interface BtnParam {
   className?: BtnColor
   onClick?: Function | undefined
+  mode?: 'btn' | 'toggle'
   toggleId?: string | undefined
   label?: string | undefined
-  icon?: string | undefined
+  iconId?: IconId
+  iconSize?: 16 | 24 | 32 | 64
 }
 
 export interface IconParam {
-  id?:
-    | string
-    | 'none'
-    | 'home'
-    | 'specialties'
-    | 'pin'
-    | 'pinFill'
-    | 'close'
-    | undefined
+  id?: IconId
   size?: number | undefined
 }
 

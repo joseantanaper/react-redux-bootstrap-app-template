@@ -1,15 +1,27 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react'
 import { type OffcanvasParam } from '../types'
 import Icon from './Icon'
 
-const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
+const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   const sidebarRef = useRef<HTMLDivElement | null>(null)
-
   const [visible, setVisible] = useState(false)
+  const [mode, setMode] = useState<0 | 1>(0)
 
-  const test = () => {
-    alert('test')
-  }
+  useEffect(() => {}, [])
+
+  useEffect(() => {}, [visible])
+  useEffect(() => {
+    document.documentElement?.setAttribute(
+      'data-app-sidebar-start-mode',
+      String(mode)
+    )
+  }, [mode])
 
   const toggle = (closeIt = false) => {
     // console.log(sidebar.pushContent)
@@ -28,26 +40,8 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
     return true
   }
 
-  // const toggleClose = () => {
-  //   sidebarRef?.current?.classList.remove('show')
-  //   document.documentElement?.classList.remove(`app-${sidebar?.position}-show`)
-  // }
-
-  const toggleFix = (fixIt = false) => {
-    if (
-      document.documentElement?.classList.contains(
-        `app-${sidebar?.position}-show`
-      )
-    ) {
-      document.documentElement?.classList.remove(
-        `app-${sidebar?.position}-show`
-      )
-      setVisible(false)
-    } else {
-      document.documentElement?.classList.add(`app-${sidebar?.position}-show`)
-      setVisible(true)
-    }
-    return true
+  const toggleFix = () => {
+    setMode(mode === undefined || mode === null || mode === 0 ? 1 : 0)
   }
 
   useImperativeHandle(ref, () => {
@@ -67,7 +61,9 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
     >
       {sidebar?.title && (
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title">{sidebar?.title}</h5>
+          <h5 className="offcanvas-title">
+            {sidebar?.title} {mode}
+          </h5>
           <div className="btn-group position-absolute end-0">
             <button
               type="button"
@@ -76,7 +72,7 @@ const Sidebar = forwardRef(function SidebarPlus(sidebar: OffcanvasParam, ref) {
               // aria-label="Close"
               onClick={() => toggleFix()}
             >
-              <Icon id={visible ? 'pinFill' : 'pin'} />
+              <Icon id={mode ? 'pinFill' : 'pin'} />
             </button>
             <button
               type="button"
