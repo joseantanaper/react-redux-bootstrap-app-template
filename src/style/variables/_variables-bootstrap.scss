@@ -3,6 +3,7 @@ $navbar-padding-y: 0;
 $border-radius: 0;
 $navbar-brand-padding-y: 9px;
 $navbar-toggler-padding-x: 0px;
+$toggler-size: 50px;
 
 // $accordion-body-padding-x: 0;
 // $accordion-body-padding-y: 0;
@@ -24,7 +25,6 @@ $list-group-border-width: 0;
 // $list-group-border-radius: 15px;
 // $list-group-active-border-color: none;
 
-$toggler-size: 50px;
 $btn-margin: 4px;
 $btn-size: calc($toggler-size - ($btn-margin * 2));
 

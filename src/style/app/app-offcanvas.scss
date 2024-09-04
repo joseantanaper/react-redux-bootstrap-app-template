@@ -1,0 +1,118 @@
+$app-offcanvas-debug: false;
+$app-offcanvas-opacity: 0.6;
+$app-offcanvas-opacity-hover: 1;
+$app-offcanvas-start-width: 320px;
+$app-offcanvas-start-mode-0-width: 0;
+$app-offcanvas-start-mode-1-width: 50px;
+
+html > body > #root > .app {
+  .offcanvas,
+  .app-offcanvas {
+    @if ($app-offcanvas-debug or $app-debug) {
+      @extend .app-debug-border;
+      top: calc($app-navbar-height + calc($app-debug-border * 2));
+      bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
+    } @else {
+      top: $app-navbar-height !important;
+      bottom: $app-footer-height !important;
+    }
+    @extend .offcanvas, .shadow-sm;
+    transition: $app-transition;
+    z-index: 99999 !important;
+    clip-path: inset(0px -24px 0px 0px);
+    padding: $app-padding;
+    min-width: $app-offcanvas-start-width;
+    max-width: $app-offcanvas-start-width;
+    width: $app-offcanvas-start-width;
+
+    .offcanvas-header {
+      @extend .border-bottom;
+    }
+
+    .offcanvas-body {
+      padding: 0;
+      overflow-y: scroll !important;
+    }
+  }
+
+  .app-offcanvas:not(.show) {
+    // transition: $app-transition ease-out;
+    opacity: $app-offcanvas-opacity;
+  }
+  .app-offcanvas-start.show {
+    @extend .border-end;
+    left: 0;
+    opacity: $app-offcanvas-opacity;
+  }
+  .app-offcanvas-start.show:hover {
+    @extend .border-end;
+    left: 0;
+    opacity: $app-offcanvas-opacity-hover;
+  }
+  // .app-offcanvas-end.show {
+  //   @extend .border-start;
+  //   right: 0;
+  // }
+  // .app-offcanvas-end {
+  //   @extend .border-0, .border-start;
+  //   right: -($app-offcanvas-width);
+  // }
+  .row {
+    .app-content {
+      transition: $app-transition;
+    }
+  }
+}
+
+html,
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='0'] {
+  .row {
+    .app-content {
+      margin-left: 0 !important;
+    }
+  }
+  .app-offcanvas-start {
+    @extend .border-0, .border-end;
+    visibility: hidden !important;
+    left: -($app-offcanvas-start-width);
+  }
+}
+html[data-app-offcanvas-start-show='0'],
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='1'] {
+  .row {
+    .app-content {
+      margin-left: $app-offcanvas-start-width !important;
+    }
+  }
+  .app-offcanvas-start {
+    @extend .border-0, .border-end;
+    visibility: visible !important;
+    left: 0;
+  }
+}
+
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='0'] {
+  .row {
+    .app-content {
+      margin-left: $app-offcanvas-start-mode-1-width !important;
+    }
+  }
+  .app-offcanvas-start {
+    @extend .border-0, .border-end;
+    width: $app-offcanvas-start-mode-1-width !important;
+    visibility: visible !important;
+    // left: -($app-offcanvas-start-mode-1-width) + $app-offcanvas-start-width;
+  }
+}
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='1'] {
+  .row {
+    .app-content {
+      margin-left: $app-offcanvas-start-width !important;
+    }
+  }
+  .app-offcanvas-start {
+    @extend .border-0, .border-end;
+    visibility: visible !important;
+    left: 0;
+  }
+}

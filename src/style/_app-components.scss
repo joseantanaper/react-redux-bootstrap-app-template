@@ -74,38 +74,7 @@
   }
 }
 
-html:not(.app-offcanvas-start-show) {
-  .row {
-    .app-content {
-      transition: $app-transition;
-      margin-left: 0;
-    }
-  }
-}
-html.app-offcanvas-start-show {
-  .row {
-    .app-content {
-      transition: $app-transition;
-      margin-left: $app-offcanvas-width;
-    }
-  }
-}
-html:not(.app-offcanvas-end-show) {
-  .row {
-    .app-content {
-      transition: $app-transition;
-      margin-right: 0;
-    }
-  }
-}
-html.app-offcanvas-end-show {
-  .row {
-    .app-content {
-      transition: $app-transition;
-      margin-right: $app-offcanvas-width;
-    }
-  }
-}
+@import './app/app-offcanvas';
 
 // #region Navbars
 @include color-mode(light) {
@@ -204,64 +173,7 @@ html.app-offcanvas-end-show {
 
 // #region Sidebars
 
-.offcanvas,
-.app-offcanvas {
-  @if ($app-debug) {
-    @extend .app-debug-border;
-  }
-  @extend .offcanvas, .shadow-sm;
-  transition: $app-transition;
-  z-index: 99999 !important;
-  clip-path: inset(0px -24px 0px 0px);
-  padding: $app-padding;
-  min-width: $app-offcanvas-width;
-  max-width: $app-offcanvas-width;
-  width: $app-offcanvas-width;
-
-  .offcanvas-header {
-    @extend .border-bottom;
-  }
-
-  .offcanvas-body {
-    padding: 0;
-    overflow-y: scroll !important;
-  }
-
-  @if ($app-debug) {
-    top: calc($app-navbar-height + calc($app-debug-border * 2));
-    bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
-  } @else {
-    top: $app-navbar-height !important;
-    bottom: $app-footer-height !important;
-  }
-}
-.app-offcanvas.show {
-  // transition: $app-transition ease-in;
-  opacity: 1;
-}
-.app-offcanvas {
-  // transition: $app-transition ease-out;
-  opacity: 0.6;
-}
-.app-offcanvas-start.show {
-  @extend .border-end;
-  left: 0;
-}
-.app-offcanvas-start {
-  @extend .border-0, .border-end;
-  left: -($app-offcanvas-width);
-}
-.app-offcanvas-end.show {
-  @extend .border-start;
-  right: 0;
-}
-.app-offcanvas-end {
-  @extend .border-0, .border-start;
-  right: -($app-offcanvas-width);
-}
-
 // #endregion
-
 .list-group {
   margin-right: 2px;
 }

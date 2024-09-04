@@ -18,25 +18,36 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   useEffect(() => {}, [visible])
   useEffect(() => {
     document.documentElement?.setAttribute(
-      'data-app-sidebar-start-mode',
+      'data-app-offcanvas-start-mode',
       String(mode)
     )
   }, [mode])
 
   const toggle = (closeIt = false) => {
     // console.log(sidebar.pushContent)
-    if (closeIt || sidebarRef?.current?.classList.contains('show')) {
-      sidebarRef?.current?.classList.remove('show')
-      document.documentElement?.classList.remove(
-        `app-${sidebar?.position}-show`
+    if (
+      !document.documentElement?.getAttribute(
+        'data-app-offcanvas-start-show'
+      ) ||
+      document.documentElement?.getAttribute(
+        'data-app-offcanvas-start-show'
+      ) === '0'
+    ) {
+      document.documentElement?.setAttribute(
+        'data-app-offcanvas-start-show',
+        String(1)
       )
-    } else {
+      sidebarRef?.current?.classList?.add('show')
       setVisible(true)
-      sidebarRef?.current?.classList.add('show')
-
-      if (sidebar?.pushContent)
-        document.documentElement?.classList.add(`app-${sidebar?.position}-show`)
+    } else {
+      document.documentElement?.setAttribute(
+        'data-app-offcanvas-start-show',
+        String(0)
+      )
+      sidebarRef?.current?.classList?.remove('show')
+      setVisible(false)
     }
+
     return true
   }
 
@@ -84,23 +95,9 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
               <Icon id="close" />
             </button>
           </div>
-
-          {/* <button
-            type="button"
-            className="btn btn-close d-flex float-end"
-            // data-bs-dismiss="offcanvas"
-            // aria-label="Close"
-            style={{ marginLeft: '10px' }}
-            onClick={() => toggle(true)}
-          ></button> */}
         </div>
       )}
-      <div
-        // className={`offcanvas-body${sidebar?.title ? ' '.concat('border-top') : ''}`}
-        className={`offcanvas-body`}
-      >
-        {sidebar?.children}
-      </div>
+      <div className={`offcanvas-body`}>{sidebar?.children}</div>
     </div>
   )
 })
