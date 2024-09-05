@@ -1,16 +1,13 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useParams,
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { PersistGate } from 'redux-persist/integration/react'
 import Root from './routes/root'
 import About from './routes/about'
 import Home from './routes/home'
 import Content from './routes/content'
-import { store } from '@app/store'
+import { store, persistor } from '@app/store'
 import '@style/base.scss'
 import '@bootstrap-js'
 
@@ -57,10 +54,14 @@ const container = document.getElementById('root')
 if (container) {
   const root = createRoot(container)
 
+  console.log('main', persistor)
+
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   )

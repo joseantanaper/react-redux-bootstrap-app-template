@@ -5,10 +5,23 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react'
+import { useAppDispatch, useAppSelector } from '@app/hooks'
+
 import { type OffcanvasParam } from '../types'
 import Icon from './Icon'
 
+import {
+  increment,
+  decrement,
+  forceCounter,
+  toggleSidebar,
+  selectCounter,
+} from '@app/slice/appSlice'
+
 const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
+  const dispatch = useAppDispatch()
+  const counter = useAppSelector(selectCounter)
+
   const sidebarRef = useRef<HTMLDivElement | null>(null)
   const [visible, setVisible] = useState(false)
   const [mode, setMode] = useState<0 | 1>(0)
@@ -23,7 +36,18 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
     )
   }, [mode])
 
-  const toggle = (closeIt = false) => {
+  useEffect(() => {}, [mode])
+
+  const toggle = async (closeIt = false) => {
+    console.log('Sidebar', 'toggle')
+    // setCounter(counter + 1)
+
+    // setCounter(counter + 1)
+    // dispatch(forceCounter(333))
+    dispatch(toggleSidebar())
+
+    // setCounter(selector)
+
     // console.log(sidebar.pushContent)
     if (
       !document.documentElement?.getAttribute(
@@ -73,7 +97,7 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
       {sidebar?.title && (
         <div className="offcanvas-header">
           <h5 className="offcanvas-title">
-            {sidebar?.title} {mode}
+            {sidebar?.title} | {mode} | {counter}
           </h5>
           <div className="btn-group position-absolute end-0">
             <button

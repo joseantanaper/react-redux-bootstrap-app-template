@@ -124,3 +124,17 @@ npm install react-lorem-ipsum --save-dev
 ```sh
 npm install react-router-dom
 ```
+
+## Debounce
+
+Delay function calls until a set time elapses after the last invocation
+
+```sh
+npm i debounce
+```
+
+## Redux Persist
+
+```sh
+npm install redux-persist
+```

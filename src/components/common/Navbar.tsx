@@ -1,15 +1,8 @@
 import React, { useEffect } from 'react'
-import { useAppDispatch } from '@app/hooks'
-import { test } from '@app/slice/appSlice'
 import { type NavbarParam } from '../types'
 
 const Navbar = (navbar: NavbarParam) => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    const res = dispatch(test())
-    console.log(res)
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <>

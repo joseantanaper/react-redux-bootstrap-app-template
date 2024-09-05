@@ -27,6 +27,9 @@ type IconId =
   | string
   | 'none'
   | 'home'
+  | 'menu'
+  | 'menux'
+  | 'menuxx'
   | 'specialties'
   | 'pin'
   | 'pinFill'
@@ -37,6 +40,7 @@ export interface BtnParam {
   onClick?: Function | undefined
   mode?: 'btn' | 'toggle'
   toggleId?: string | undefined
+  togglePosition?: 'start' | 'end' | undefined
   label?: string | undefined
   iconId?: IconId
   iconSize?: 16 | 24 | 32 | 64

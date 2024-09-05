@@ -31,6 +31,7 @@ const Button = (button: BtnParam) => {
     // d-block d-md-none
     <button
       className={`${button.mode === 'toggle' ? 'navbar-toggler' : 'btn'}${button.className ? ' btn-'.concat(button.className) : ''}`}
+      data-app-toggle-position={button?.togglePosition}
       type="button"
       onClick={(e) => onClickHandler(e)}
       data-bs-toggle={button.toggleId ? 'offcanvas' : undefined}

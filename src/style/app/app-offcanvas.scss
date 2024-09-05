@@ -3,9 +3,12 @@ $app-offcanvas-opacity: 0.6;
 $app-offcanvas-opacity-hover: 1;
 $app-offcanvas-start-width: 320px;
 $app-offcanvas-start-mode-0-width: 0;
-$app-offcanvas-start-mode-1-width: 50px;
+$app-offcanvas-start-mode-1-width: $toggler-size;
 
 html > body > #root > .app {
+  button[data-app-toggle-position='start'] {
+    background: red !important;
+  }
   .offcanvas,
   .app-offcanvas {
     @if ($app-offcanvas-debug or $app-debug) {
@@ -73,7 +76,7 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='0'] {
   }
   .app-offcanvas-start {
     @extend .border-0, .border-end;
-    visibility: hidden !important;
+    // visibility: hidden !important;
     left: -($app-offcanvas-start-width);
   }
 }
@@ -99,9 +102,8 @@ html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='0'] {
   }
   .app-offcanvas-start {
     @extend .border-0, .border-end;
-    width: $app-offcanvas-start-mode-1-width !important;
-    visibility: visible !important;
-    // left: -($app-offcanvas-start-mode-1-width) + $app-offcanvas-start-width;
+    // visibility: hidden !important;
+    left: -($app-offcanvas-start-width) + $app-offcanvas-start-mode-1-width;
   }
 }
 html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='1'] {
