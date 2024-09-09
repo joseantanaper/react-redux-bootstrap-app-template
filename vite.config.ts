@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '/react-redux-bootstrap-app-template',
   plugins: [react()],
   server: {
     open: true,
