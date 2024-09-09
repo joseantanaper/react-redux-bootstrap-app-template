@@ -7,10 +7,13 @@ const __dirname = path.dirname(__filename)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '.',
   plugins: [react()],
   server: {
     open: true,
+  },
+  build: {
+    outDir: path.resolve(__dirname, './docs'),
   },
   resolve: {
     alias: {

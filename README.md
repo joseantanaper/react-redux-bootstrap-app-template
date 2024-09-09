@@ -138,3 +138,22 @@ npm i debounce
 ```sh
 npm install redux-persist
 ```
+
+# Deploy to GitHub Pages
+
+1. Create new branch "development" and set it as default.
+2. Remove "main/master" branch.
+3. Install "gh-pages":
+
+```sh
+npm install gh-pages --save-dev
+```
+
+4. Add new "deploy" script to package.json:
+
+```sh
+"deploy": "gh-pages -d dist -b main"
+"deploy": "gh-pages -d build -b main"
+"deploy": "gh-pages -d dist -b master"
+"deploy": "gh-pages -d build -b master",
+```
