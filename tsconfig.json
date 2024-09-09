@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./react-redux-bootstrap-app-template",
+    "baseUrl": ".",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
