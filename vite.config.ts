@@ -1,5 +1,5 @@
-import { defineConfig } from "vitest/config"
-import react from "@vitejs/plugin-react"
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/react-redux-bootstrap-app-template',
+  base: '/react-redux-bootstrap-app-template/',
   plugins: [react()],
   server: {
     open: true,
@@ -20,7 +20,7 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components'),
       '@routes': path.resolve(__dirname, './src/routes'),
       '@style': path.resolve(__dirname, './src/style'),
-      
+
       '@bootstrap-scss': path.resolve(
         __dirname,
         './node_modules/bootstrap/scss/bootstrap'
@@ -37,8 +37,8 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests",
+    environment: 'jsdom',
+    setupFiles: 'src/setupTests',
     mockReset: true,
   },
 })
