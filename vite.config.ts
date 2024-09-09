@@ -7,13 +7,10 @@ const __dirname = path.dirname(__filename)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './react-redux-bootstrap-app-template/',
+  base: './',
   plugins: [react()],
   server: {
     open: true,
-  },
-  build: {
-    outDir: path.resolve(__dirname, './dist'),
   },
   resolve: {
     alias: {

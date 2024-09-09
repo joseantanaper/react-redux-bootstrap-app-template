@@ -1,13 +1,13 @@
 {
   "name": "react-redux-bootstrap-app-template",
-  "homepage": "https://joseantanaper.github.io/react-redux-bootstrap-app-template/",
+  "homepage": "https://joseantanaper.github.io/react-redux-bootstrap-app-template-preview",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "deploy": "gh-pages -d dist -b main",
+
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",

@@ -157,3 +157,6 @@ npm install gh-pages --save-dev
 "deploy": "gh-pages -d dist -b master"
 "deploy": "gh-pages -d build -b master",
 ```
+
+5. Add remote that points to GitHub Repository
+   git remote add origin https://joseantanaper.github.io/react-redux-bootstrap-app-template-preview.git
