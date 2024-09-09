@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
-import { test } from '@app/slice/appSlice'
 import Navbar from '../common/Navbar'
 import Button from '../common/Button'
 import Sidebar from '../common/Sidebar'
@@ -16,8 +15,8 @@ const HeaderDemo = () => {
   const sidebarEndPush = useRef<typeof Sidebar | null>()
 
   useEffect(() => {
-    const res = dispatch(test())
-    console.log(res)
+    // const res = dispatch(test())
+    // console.log(res)
   }, [])
 
   const toggleTheme = () => {

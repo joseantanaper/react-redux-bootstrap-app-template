@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '@/components/layout/Header'
+import Header from '@components/layout/Header'
 import Footer from '@components/layout/Footer'
 import { Outlet } from 'react-router-dom'
 import '@style/base.scss'
@@ -21,4 +21,3 @@ const App = () => {
 }
 
 export default App
-
