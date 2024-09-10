@@ -15,7 +15,7 @@ const Menu = () => {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            Accordion Item #1
+            Sections
           </button>
         </h2>
         <div
@@ -28,7 +28,6 @@ const Menu = () => {
               <NavLink
                 to="/"
                 className="list-group-item list-group-item-action"
-                aria-current="true"
               >
                 <Icon id="home" />
                 <span>Home</span>
@@ -61,7 +60,7 @@ const Menu = () => {
             aria-expanded="false"
             aria-controls="collapseTwo"
           >
-            Accordion Item #2
+            Other
           </button>
         </h2>
         <div
@@ -91,7 +90,7 @@ const Menu = () => {
             aria-expanded="false"
             aria-controls="collapseThree"
           >
-            Accordion Item #3
+            More
           </button>
         </h2>
         <div

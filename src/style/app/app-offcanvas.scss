@@ -1,6 +1,6 @@
 $app-offcanvas-debug: false;
 $app-offcanvas-opacity: 0.6;
-$app-offcanvas-opacity-hover: 1;
+$app-offcanvas-opacity-hover: 0.96;
 $app-offcanvas-start-width: 320px;
 $app-offcanvas-start-mode-0-width: 0;
 $app-offcanvas-start-mode-1-width: $toggler-size;
@@ -71,12 +71,11 @@ html,
 html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='0'] {
   .row {
     .app-content {
-      margin-left: 0 !important;
+      margin-left: 0;
     }
   }
   .app-offcanvas-start {
     @extend .border-0, .border-end;
-    // visibility: hidden !important;
     left: -($app-offcanvas-start-width);
   }
 }
@@ -84,7 +83,7 @@ html[data-app-offcanvas-start-show='0'],
 html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='1'] {
   .row {
     .app-content {
-      margin-left: $app-offcanvas-start-width !important;
+      margin-left: $app-offcanvas-start-width;
     }
   }
   .app-offcanvas-start {
@@ -97,19 +96,18 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='1'] {
 html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='0'] {
   .row {
     .app-content {
-      margin-left: $app-offcanvas-start-mode-1-width !important;
+      margin-left: 0;
     }
   }
   .app-offcanvas-start {
     @extend .border-0, .border-end;
-    // visibility: hidden !important;
-    left: -($app-offcanvas-start-width) + $app-offcanvas-start-mode-1-width;
+    left: -($app-offcanvas-start-width);
   }
 }
 html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='1'] {
   .row {
     .app-content {
-      margin-left: $app-offcanvas-start-width !important;
+      margin-left: 0;
     }
   }
   .app-offcanvas-start {

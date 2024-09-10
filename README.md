@@ -152,6 +152,7 @@ npm install gh-pages --save-dev
 4. Add new "deploy" script to package.json:
 
 ```sh
+"predeploy": "npm run build",
 "deploy": "gh-pages -d dist -b main"
 "deploy": "gh-pages -d build -b main"
 "deploy": "gh-pages -d dist -b master"

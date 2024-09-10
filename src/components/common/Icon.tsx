@@ -257,7 +257,7 @@ const Icon = (icon: IconParam) => {
     ? iconAlias[String(id)].icon
     : iconAlias.none.icon
 
-  console.log(id)
+  // console.log(id)
 
   return (
     <svg

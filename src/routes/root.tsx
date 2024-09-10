@@ -12,6 +12,7 @@ const App = () => {
       <div className="app-main container-fluid text-center">
         <div className="row">
           <div className="app-content col">
+            {window.location.pathname}
             <Outlet />
           </div>
         </div>

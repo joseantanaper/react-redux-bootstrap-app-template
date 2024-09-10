@@ -25,14 +25,14 @@ export const appSlice = createAppSlice({
   initialState,
   reducers: (create) => ({
     toggleTheme: (state) => {
-      console.log('app', 'toggleTheme', state)
+      // console.log('app', 'toggleTheme', state)
       state.theme =
         !state || state.theme === null || state.theme === 'light'
           ? 'dark'
           : 'light'
     },
     toggleSidebar: (state) => {
-      console.log('app', 'toggleSidebar', state)
+      // console.log('app', 'toggleSidebar', state)
       const { collapsed } = state.sidebar
       state.sidebar = {
         ...state.sidebar,
@@ -40,11 +40,11 @@ export const appSlice = createAppSlice({
       }
     },
     increment: (state) => {
-      console.log('app', 'increment', state)
+      // console.log('app', 'increment', state)
       state.counter += 1
     },
     decrement: (state) => {
-      console.log('app', 'decrement', state)
+      // console.log('app', 'decrement', state)
       state.counter -= 1
     },
     reset: (state) => {

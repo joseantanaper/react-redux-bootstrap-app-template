@@ -10,13 +10,7 @@ import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { type OffcanvasParam } from '../types'
 import Icon from './Icon'
 
-import {
-  increment,
-  decrement,
-  forceCounter,
-  toggleSidebar,
-  selectCounter,
-} from '@app/slice/appSlice'
+import { toggleSidebar, selectCounter } from '@app/slice/appSlice'
 
 const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   const dispatch = useAppDispatch()
@@ -26,7 +20,21 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   const [visible, setVisible] = useState(false)
   const [mode, setMode] = useState<0 | 1>(0)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    sidebarRef.current?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const dismiss = Number(
+          document.documentElement?.getAttribute(
+            'data-app-offcanvas-start-mode'
+          )
+        )
+        console.log('click inside', dismiss)
+        if (dismiss === 1) {
+          toggle()
+        }
+      })
+    })
+  }, [])
 
   useEffect(() => {}, [visible])
   useEffect(() => {
@@ -39,16 +47,8 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   useEffect(() => {}, [mode])
 
   const toggle = async (closeIt = false) => {
-    console.log('Sidebar', 'toggle')
-    // setCounter(counter + 1)
-
-    // setCounter(counter + 1)
-    // dispatch(forceCounter(333))
+    // console.log('Sidebar', 'toggle')
     dispatch(toggleSidebar())
-
-    // setCounter(selector)
-
-    // console.log(sidebar.pushContent)
     if (
       !document.documentElement?.getAttribute(
         'data-app-offcanvas-start-show'
@@ -86,7 +86,7 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
     }
   })
 
-  console.log('sidebar', sidebar?.children)
+  // console.log('sidebar', sidebar?.children)
 
   return (
     <div
@@ -100,20 +100,13 @@ const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
             {sidebar?.title} | {mode} | {counter}
           </h5>
           <div className="btn-group position-absolute end-0">
-            <button
-              type="button"
-              className="btn"
-              // data-bs-dismiss="offcanvas"
-              // aria-label="Close"
-              onClick={() => toggleFix()}
-            >
-              <Icon id={mode ? 'pinFill' : 'pin'} />
+            <button type="button" className="btn" onClick={() => toggleFix()}>
+              <Icon id={mode === 0 ? 'pinFill' : 'pin'} />
             </button>
             <button
               type="button"
               className="btn"
-              // data-bs-dismiss="offcanvas"
-              // aria-label="Close"
+              data-bs-dismiss="app-offcanvas"
               onClick={() => toggle()}
             >
               <Icon id="close" />

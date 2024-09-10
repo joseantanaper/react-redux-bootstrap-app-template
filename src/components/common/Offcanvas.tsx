@@ -7,14 +7,14 @@ const Offcanvas = (offcanvas: OffcanvasParam) => {
   useEffect(() => {
     if (offcanvas.pushContent === true && offcanvasRef?.current) {
       offcanvasRef.current?.addEventListener('hide.bs.offcanvas', (event) => {
-        console.log('hide', offcanvasRef.current?.id)
+        // console.log('hide', offcanvasRef.current?.id)
         document.documentElement?.classList?.remove(
           `app-${offcanvas.position}-show`
         )
       })
 
       offcanvasRef?.current?.addEventListener('show.bs.offcanvas', (event) => {
-        console.log('show', offcanvasRef.current?.id)
+        // console.log('show', offcanvasRef.current?.id)
         document.documentElement?.classList?.add(
           `app-${offcanvas.position}-show`
         )

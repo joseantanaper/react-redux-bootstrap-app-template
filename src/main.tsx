@@ -9,52 +9,66 @@ import Home from './routes/home'
 import Content from './routes/content'
 import { store, persistor } from '@app/store'
 import '@style/base.scss'
+
 import '@bootstrap-js'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    loader: () => ({
-      title: 'Root',
-      subtitle: 'Subtitle',
-    }),
-    children: [
-      {
-        index: true,
-        path: '/',
-        element: <Home />,
-        loader: () => ({
-          title: 'Home',
-          subtitle: 'Subtitle',
-        }),
-      },
-      {
-        path: '/content',
-        element: <Content />,
-        loader: () => ({
-          title: 'Content',
-          subtitle: 'Subtitle',
-        }),
-      },
-      {
-        path: '/about',
-        element: <About />,
-        loader: () => ({
-          title: 'About',
-          subtitle: 'Subtitle',
-        }),
-      },
-    ],
-  },
-])
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Root />,
+      loader: () => ({
+        title: 'Root',
+        subtitle: 'Subtitle',
+      }),
+      children: [
+        {
+          index: true,
+          path: '/',
+          element: <Home />,
+          loader: () => ({
+            title: 'Home',
+            subtitle: 'Subtitle',
+          }),
+        },
+        {
+          path: '/content',
+          element: <Content />,
+          loader: () => ({
+            title: 'Content',
+            subtitle: 'Subtitle',
+          }),
+        },
+        {
+          path: '/about',
+          element: <About />,
+          loader: () => ({
+            title: 'About',
+            subtitle: 'Subtitle',
+          }),
+        },
+      ],
+    },
+  ],
+
+  { basename: window.location.pathname }
+
+  // {
+  //   basename:
+  //     process.env.NODE_ENV === 'development'
+  //       ? ''
+  //       : '/react-redux-bootstrap-app-template',
+  // }
+)
 
 const container = document.getElementById('root')
 
 if (container) {
   const root = createRoot(container)
 
-  console.log('main', persistor)
+  // console.log('main', persistor)
+
+  // console.log(JSON.stringify(window.location))
 
   root.render(
     <React.StrictMode>
