@@ -6,9 +6,9 @@ $app-offcanvas-start-mode-0-width: 0;
 $app-offcanvas-start-mode-1-width: $toggler-size;
 
 html > body > #root > .app {
-  button[data-app-toggle-position='start'] {
-    background: red !important;
-  }
+  // button[data-app-toggle-position='start'] {
+  //   background: red !important;
+  // }
   .offcanvas,
   .app-offcanvas {
     @if ($app-offcanvas-debug or $app-debug) {
@@ -38,28 +38,13 @@ html > body > #root > .app {
     }
   }
 
-  .app-offcanvas:not(.show) {
-    // transition: $app-transition ease-out;
+  .app-offcanvas {
     opacity: $app-offcanvas-opacity;
   }
-  .app-offcanvas-start.show {
-    @extend .border-end;
-    left: 0;
-    opacity: $app-offcanvas-opacity;
-  }
-  .app-offcanvas-start.show:hover {
-    @extend .border-end;
-    left: 0;
+  .app-offcanvas:hover {
     opacity: $app-offcanvas-opacity-hover;
   }
-  // .app-offcanvas-end.show {
-  //   @extend .border-start;
-  //   right: 0;
-  // }
-  // .app-offcanvas-end {
-  //   @extend .border-0, .border-start;
-  //   right: -($app-offcanvas-width);
-  // }
+
   .row {
     .app-content {
       transition: $app-transition;
@@ -68,7 +53,7 @@ html > body > #root > .app {
 }
 
 html,
-html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='0'] {
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='1'] {
   .row {
     .app-content {
       margin-left: 0;
@@ -79,11 +64,11 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='0'] {
     left: -($app-offcanvas-start-width);
   }
 }
-html[data-app-offcanvas-start-show='0'],
-html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='1'] {
+html[data-app-offcanvas-start-collapsed='1'],
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='0'] {
   .row {
     .app-content {
-      margin-left: $app-offcanvas-start-width;
+      margin-left: 0;
     }
   }
   .app-offcanvas-start {
@@ -93,7 +78,7 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='1'] {
   }
 }
 
-html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='0'] {
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-collapsed='1'] {
   .row {
     .app-content {
       margin-left: 0;
@@ -104,10 +89,10 @@ html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='0'] {
     left: -($app-offcanvas-start-width);
   }
 }
-html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='1'] {
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-collapsed='0'] {
   .row {
     .app-content {
-      margin-left: 0;
+      margin-left: $app-offcanvas-start-width;
     }
   }
   .app-offcanvas-start {

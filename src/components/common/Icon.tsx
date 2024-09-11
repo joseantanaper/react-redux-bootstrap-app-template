@@ -273,9 +273,10 @@ const Icon = (icon: IconParam) => {
       // data-theme={dataTheme}
     >
       {idIcon &&
-        idIcon.map((path) => (
+        idIcon.map((path, idx) => (
           <path
-            fill-rule={path.split(';').length > 1 ? 'evenodd' : 'nonzero'}
+            key={'icon-'.concat(String(idx))}
+            fillRule={path.split(';').length > 1 ? 'evenodd' : 'nonzero'}
             d={path.split(';')[path.split(';').length - 1]}
           />
         ))}

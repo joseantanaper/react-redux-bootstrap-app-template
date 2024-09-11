@@ -5,13 +5,14 @@ import Button from '../common/Button'
 import Sidebar from '../common/Sidebar'
 import Menu from '@components/common/Menu'
 
-import { toggleTheme } from '@/app/slice/appSlice'
+import { toggleTheme, selectSidebar } from '@app/slice/appSlice'
 
 const Header = () => {
   const dispatch = useAppDispatch()
-
   const sidebarStart = useRef<typeof forwardRef | any>()
   const sidebarEnd = useRef<typeof forwardRef | any>()
+
+  const storedSidebar = useAppSelector(selectSidebar)
 
   useEffect(() => {}, [])
 
@@ -32,8 +33,8 @@ const Header = () => {
         startNodes={[
           <div className="btn-group">
             <Button
-              //   icon="toggle"
               mode="toggle"
+              toggleId="sidebarStart"
               togglePosition="start"
               iconId="menuxx"
               iconSize={24}
@@ -56,10 +57,9 @@ const Header = () => {
 
       <Sidebar
         ref={sidebarStart}
-        title="Sidebar Start"
         id="sidebarStart"
+        title="Sidebar Start"
         position="offcanvas-start"
-        pushContent={true}
       >
         <Menu />
       </Sidebar>
@@ -69,7 +69,6 @@ const Header = () => {
         title="Sidebar End"
         id="sidebarEnd"
         position="offcanvas-end"
-        pushContent={true}
       />
     </>
   )

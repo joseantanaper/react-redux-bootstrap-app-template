@@ -51,7 +51,7 @@ const router = createBrowserRouter(
     },
   ],
 
-  { basename: window.location.pathname }
+  { basename: '' /* window.location.pathname */ }
 
   // {
   //   basename:

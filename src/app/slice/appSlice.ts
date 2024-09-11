@@ -14,7 +14,7 @@ export interface AppState {
 const initialState: AppState = {
   counter: 0,
   theme: 'light',
-  sidebar: { collapsed: 0, pushMode: 0, collapseMode: 0 },
+  sidebar: { collapsed: 0, mode: 0 },
   lang: 'es',
   count: 0,
   test: '',
@@ -23,6 +23,7 @@ const initialState: AppState = {
 export const appSlice = createAppSlice({
   name: 'app',
   initialState,
+
   reducers: (create) => ({
     toggleTheme: (state) => {
       // console.log('app', 'toggleTheme', state)
@@ -30,6 +31,7 @@ export const appSlice = createAppSlice({
         !state || state.theme === null || state.theme === 'light'
           ? 'dark'
           : 'light'
+      return state
     },
     toggleSidebar: (state) => {
       // console.log('app', 'toggleSidebar', state)
@@ -38,6 +40,24 @@ export const appSlice = createAppSlice({
         ...state.sidebar,
         collapsed: !collapsed || collapsed === null || collapsed === 0 ? 1 : 0,
       }
+      return state
+    },
+    toggleSidebarMode: (state) => {
+      const { mode } = state.sidebar
+      state.sidebar = {
+        ...state.sidebar,
+        mode: !mode || mode === null || mode === 0 ? 1 : 0,
+      }
+      return state
+    },
+    setSidebarMode: (state, action) => {
+      console.log(state, action)
+      const newMode = action.payload
+      state.sidebar = {
+        ...state.sidebar,
+        mode: newMode,
+      }
+      return state
     },
     increment: (state) => {
       // console.log('app', 'increment', state)
@@ -54,35 +74,12 @@ export const appSlice = createAppSlice({
     forceCounter: (state, action: PayloadAction<number>) => {
       state.counter = action.payload
     },
-    // ??????
-    // sidebar: {
-    //   setPusMode: create.reducer((state, action) => {
-    //     return state
-    //   }),
-    //   setCollapseMode: create.reducer((state, action) => {
-    //     return state
-    //   }),
-    // },
   }),
 
-  // extraReducers: builder => {
-  //   builder
-  //     // Handle the action types defined by the `incrementAsync` thunk defined below.
-  //     // This lets the slice reducer update the state with request status and results.
-  //     .addCase(incrementAsync.pending, state => {
-  //       state.status = "loading"
-  //     })
-  //     .addCase(incrementAsync.fulfilled, (state, action) => {
-  //       state.status = "idle"
-  //       state.value += action.payload
-  //     })
-  //     .addCase(incrementAsync.rejected, state => {
-  //       state.status = "failed"
-  //     })
-  // },
-
   selectors: {
-    selectCounter: (app) => app.counter,
+    selectSidebar: (state) => state.sidebar,
+    selectSidebarCollapsed: (state) => state.sidebar.collapsed,
+    selectSidebarMode: (state) => state.sidebar.mode,
   },
 })
 
@@ -92,9 +89,10 @@ export const {
   forceCounter,
   toggleTheme,
   toggleSidebar,
+  toggleSidebarMode,
+  setSidebarMode,
 } = appSlice.actions
 
-export default appSlice.reducer
-export const selectCounter = (state: RootState) => state.app.counter
+export const { selectSidebar } = appSlice.selectors
 
-// export const { test, sidebar } = appSlice.actions
+export default appSlice.reducer

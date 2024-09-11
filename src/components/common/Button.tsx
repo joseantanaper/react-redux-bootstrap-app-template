@@ -31,12 +31,13 @@ const Button = (button: BtnParam) => {
     // d-block d-md-none
     <button
       className={`${button.mode === 'toggle' ? 'navbar-toggler' : 'btn'}${button.className ? ' btn-'.concat(button.className) : ''}`}
-      data-app-toggle-position={button?.togglePosition}
+      // data-app-toggle-position={button?.togglePosition}
       type="button"
       onClick={(e) => onClickHandler(e)}
-      data-bs-toggle={button.toggleId ? 'offcanvas' : undefined}
-      data-bs-target={button.toggleId ? '#'.concat(button.toggleId) : undefined}
-      aria-controls={button.toggleId ? button.toggleId : undefined}
+
+      // data-bs-toggle={button.toggleId ? 'offcanvas' : undefined}
+      // data-bs-target={button.toggleId ? '#'.concat(button.toggleId) : undefined}
+      // aria-controls={button.toggleId ? button.toggleId : undefined}
     >
       {button?.mode === 'toggle' && !button?.iconId ? (
         <span className="navbar-toggler-icon"></span>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { type NavbarParam } from '../types'
 
 const Navbar = (navbar: NavbarParam) => {
@@ -12,7 +12,10 @@ const Navbar = (navbar: NavbarParam) => {
         <div className="container-fluid">
           {navbar.startNodes && (
             <div className="d-flex align-items-center justify-content-start">
-              {navbar.startNodes && navbar.startNodes.map((node) => node)}
+              {navbar.startNodes &&
+                navbar.startNodes.map((node, idx) => (
+                  <React.Fragment key={idx}>{node}</React.Fragment>
+                ))}
             </div>
           )}
 
@@ -20,7 +23,9 @@ const Navbar = (navbar: NavbarParam) => {
             <a className="navbar-brand w-100" href=".">
               <div className="text-nowrap overflow-hidden text-truncate opacity">
                 {Array.isArray(navbar.brand) ? (
-                  navbar.brand.map((brand) => <span>{brand}</span>)
+                  navbar.brand.map((brand, idx) => (
+                    <span key={idx}>{brand}</span>
+                  ))
                 ) : (
                   <span>{navbar.brand}</span>
                 )}
@@ -30,7 +35,12 @@ const Navbar = (navbar: NavbarParam) => {
 
           {navbar.endNodes && (
             <div className="d-flex align-items-center justify-content-start">
-              {navbar.endNodes && navbar.endNodes.map((node) => node)}
+              {navbar.endNodes &&
+                navbar.endNodes.map((node, idx) => {
+                  if (node !== undefined && node !== null)
+                    <React.Fragment key={idx}>{node}</React.Fragment>
+                  return node
+                })}
             </div>
           )}
         </div>

@@ -6,108 +6,82 @@ import React, {
   useImperativeHandle,
 } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
-
+import app from '@utils/app'
 import { type OffcanvasParam } from '../types'
 import Icon from './Icon'
 
-import { toggleSidebar, selectCounter } from '@app/slice/appSlice'
+import {
+  toggleSidebar,
+  selectSidebar,
+  toggleSidebarMode,
+} from '@app/slice/appSlice'
 
 const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
   const dispatch = useAppDispatch()
-  const counter = useAppSelector(selectCounter)
-
+  const storedSidebar = useAppSelector(selectSidebar)
   const sidebarRef = useRef<HTMLDivElement | null>(null)
-  const [visible, setVisible] = useState(false)
-  const [mode, setMode] = useState<0 | 1>(0)
 
   useEffect(() => {
-    sidebarRef.current?.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        const dismiss = Number(
-          document.documentElement?.getAttribute(
-            'data-app-offcanvas-start-mode'
-          )
-        )
-        console.log('click inside', dismiss)
-        if (dismiss === 1) {
-          toggle()
-        }
-      })
-    })
+    app.sidebar.restore(storedSidebar)
   }, [])
 
-  useEffect(() => {}, [visible])
   useEffect(() => {
-    document.documentElement?.setAttribute(
-      'data-app-offcanvas-start-mode',
-      String(mode)
-    )
-  }, [mode])
+    // console.log('Sidebar', 'collapsed', storedSidebar.collapsed)
+    app.sidebar.collapse(storedSidebar.collapsed)
+  }, [storedSidebar.collapsed])
+  useEffect(() => {
+    // console.log('Sidebar', 'mode', storedSidebar.mode)
+    app.sidebar.mode(storedSidebar.mode)
+  }, [storedSidebar.mode])
 
-  useEffect(() => {}, [mode])
-
-  const toggle = async (closeIt = false) => {
-    // console.log('Sidebar', 'toggle')
-    dispatch(toggleSidebar())
-    if (
-      !document.documentElement?.getAttribute(
-        'data-app-offcanvas-start-show'
-      ) ||
-      document.documentElement?.getAttribute(
-        'data-app-offcanvas-start-show'
-      ) === '0'
-    ) {
-      document.documentElement?.setAttribute(
-        'data-app-offcanvas-start-show',
-        String(1)
+  const linkEventsListeners = () => {
+    const conditionalToggle = () => {
+      const clickCurrentMode = Number(
+        document.documentElement?.getAttribute('data-app-offcanvas-start-mode')
       )
-      sidebarRef?.current?.classList?.add('show')
-      setVisible(true)
-    } else {
-      document.documentElement?.setAttribute(
-        'data-app-offcanvas-start-show',
-        String(0)
-      )
-      sidebarRef?.current?.classList?.remove('show')
-      setVisible(false)
+      console.log('conditionalToggle', clickCurrentMode)
+      if (clickCurrentMode === 0) dispatch(toggleSidebar())
     }
-
-    return true
+    sidebarRef.current?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        conditionalToggle()
+      })
+    })
   }
 
-  const toggleFix = () => {
-    setMode(mode === undefined || mode === null || mode === 0 ? 1 : 0)
+  const toggleMode = () => {
+    dispatch(toggleSidebarMode())
   }
 
   useImperativeHandle(ref, () => {
     return {
-      toggle: toggle,
-      toggleFix: toggleFix,
+      toggle: () => {
+        dispatch(toggleSidebar())
+      },
+      toggleMode: toggleMode,
     }
   })
-
-  // console.log('sidebar', sidebar?.children)
 
   return (
     <div
       ref={sidebarRef}
       id={`${sidebar?.id}`}
-      className={`app-offcanvas position-fixed app-${sidebar?.position} app-${sidebar?.position}-show p-0`}
+      className={`app-offcanvas position-fixed app-${sidebar?.position} p-0`}
     >
       {sidebar?.title && (
         <div className="offcanvas-header">
           <h5 className="offcanvas-title">
-            {sidebar?.title} | {mode} | {counter}
+            {sidebar?.title} | {storedSidebar.mode} | {storedSidebar.collapsed}
           </h5>
           <div className="btn-group position-absolute end-0">
-            <button type="button" className="btn" onClick={() => toggleFix()}>
-              <Icon id={mode === 0 ? 'pinFill' : 'pin'} />
+            <button type="button" className="btn" onClick={() => toggleMode()}>
+              <Icon id={storedSidebar.mode === 0 ? 'pin' : 'pinFill'} />
             </button>
             <button
               type="button"
               className="btn"
               data-bs-dismiss="app-offcanvas"
-              onClick={() => toggle()}
+              onClick={() => dispatch(toggleSidebar())}
             >
               <Icon id="close" />
             </button>
