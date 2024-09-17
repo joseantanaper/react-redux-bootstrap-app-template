@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import Navbar from '../common/Navbar'
 import Button from '../common/Button'
-import Sidebar from '../common/Sidebar'
-import Offcanvas from '../common/Offcanvas'
+import Sidebar from '../common/archive/Sidebar'
+import Offcanvas from '../common/archive/Offcanvas'
 import Menu from '@components/common/Menu'
 
 const HeaderDemo = () => {
@@ -77,7 +77,6 @@ const HeaderDemo = () => {
         title="Sidebar Start (Push)"
         id="sidebarStartPush"
         position="offcanvas-start"
-        pushContent={true}
       >
         <Menu />
       </Sidebar>
@@ -93,7 +92,6 @@ const HeaderDemo = () => {
         title="Sidebar End (Push)"
         id="sidebarEndPush"
         position="offcanvas-end"
-        pushContent={true}
       />
 
       <Offcanvas
@@ -105,7 +103,6 @@ const HeaderDemo = () => {
         title="Offcanvas Start (Push)"
         id="offcanvasStartPush"
         position="offcanvas-start"
-        pushContent={true}
       />
       <Offcanvas
         title="Offcanvas End"
@@ -116,7 +113,6 @@ const HeaderDemo = () => {
         title="Offcanvas End (Push)"
         id="offcanvasEndPush"
         position="offcanvas-end"
-        pushContent={true}
       />
     </>
   )

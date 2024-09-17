@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import Icon from './Icon'
 import { type BtnParam } from '../types'
 
-const Button = (button: BtnParam) => {
+const Button = (button: BtnParam, { ...props }) => {
   const onClickHandler = (e: MouseEvent) => {
     if (button.onClick) button.onClick(e)
     if (button.toggleId) {
@@ -30,6 +30,7 @@ const Button = (button: BtnParam) => {
   return (
     // d-block d-md-none
     <button
+      {...props}
       className={`${button.mode === 'toggle' ? 'navbar-toggler' : 'btn'}${button.className ? ' btn-'.concat(button.className) : ''}`}
       // data-app-toggle-position={button?.togglePosition}
       type="button"

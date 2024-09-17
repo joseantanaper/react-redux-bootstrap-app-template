@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import { type OffcanvasParam } from '../types'
+import { type OffcanvasParam } from '../../types'
 
 const Offcanvas = (offcanvas: OffcanvasParam) => {
   const offcanvasRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (offcanvas.pushContent === true && offcanvasRef?.current) {
+    if (offcanvasRef?.current) {
       offcanvasRef.current?.addEventListener('hide.bs.offcanvas', (event) => {
         // console.log('hide', offcanvasRef.current?.id)
         document.documentElement?.classList?.remove(

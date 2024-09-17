@@ -1,5 +1,6 @@
 $app-offcanvas-debug: false;
 $app-offcanvas-opacity: 0.6;
+$app-offcanvas-zindex: $zindex-offcanvas - 10;
 $app-offcanvas-opacity-hover: 0.96;
 $app-offcanvas-start-width: 320px;
 $app-offcanvas-start-mode-0-width: 0;
@@ -9,6 +10,9 @@ html > body > #root > .app {
   // button[data-app-toggle-position='start'] {
   //   background: red !important;
   // }
+  .app-offcanvas:not([data-bs-backdrop='true']) {
+    z-index: $app-offcanvas-zindex;
+  }
   .offcanvas,
   .app-offcanvas {
     @if ($app-offcanvas-debug or $app-debug) {
@@ -21,7 +25,7 @@ html > body > #root > .app {
     }
     @extend .offcanvas, .shadow-sm;
     transition: $app-transition;
-    z-index: 99999 !important;
+
     clip-path: inset(0px -24px 0px 0px);
     padding: $app-padding;
     min-width: $app-offcanvas-start-width;
@@ -53,7 +57,7 @@ html > body > #root > .app {
 }
 
 html,
-html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='1'] {
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='false'] {
   .row {
     .app-content {
       margin-left: 0;
@@ -64,8 +68,8 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='1'] 
     left: -($app-offcanvas-start-width);
   }
 }
-html[data-app-offcanvas-start-collapsed='1'],
-html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='0'] {
+html[data-app-offcanvas-start-show='0'],
+html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='true'] {
   .row {
     .app-content {
       margin-left: 0;
@@ -78,7 +82,7 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-collapsed='0'] 
   }
 }
 
-html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-collapsed='1'] {
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='false'] {
   .row {
     .app-content {
       margin-left: 0;
@@ -89,7 +93,7 @@ html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-collapsed='1'] 
     left: -($app-offcanvas-start-width);
   }
 }
-html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-collapsed='0'] {
+html[data-app-offcanvas-start-mode='1'][data-app-offcanvas-start-show='true'] {
   .row {
     .app-content {
       margin-left: $app-offcanvas-start-width;

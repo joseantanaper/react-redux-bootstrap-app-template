@@ -2,7 +2,8 @@ import React, { useState, type forwardRef, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import Navbar from '../common/Navbar'
 import Button from '../common/Button'
-import Sidebar from '../common/Sidebar'
+import Sidebar from '@components/common/Sidebar'
+import Toggler from '@components/common/Toggler'
 import Menu from '@components/common/Menu'
 
 import { toggleTheme, selectSidebar } from '@app/slice/appSlice'
@@ -32,14 +33,15 @@ const Header = () => {
         brand={['React Redux App', 'Pixel Perfect Template']}
         startNodes={[
           <div className="btn-group">
-            <Button
+            {/* <Button
               mode="toggle"
               toggleId="sidebarStart"
               togglePosition="start"
               iconId="menuxx"
               iconSize={24}
               onClick={() => sidebarStart?.current?.toggle(false)}
-            />
+            /> */}
+            <Toggler toggleId="sidebarStart" />
           </div>,
         ]}
         endNodes={[
@@ -52,9 +54,30 @@ const Header = () => {
           <div className="btn-group">
             <Button toggleId="offcanvasEnd" />
           </div>,
+          <div className="btn-group">
+            <Toggler toggleId="sidebarEnd" />
+          </div>,
         ]}
       />
 
+      <Sidebar
+        id="sidebarStart"
+        title="Sidebar Start"
+        position="offcanvas-start"
+      >
+        <Menu />
+      </Sidebar>
+
+      <Sidebar
+        id="sidebarEnd"
+        title="Sidebar End"
+        position="offcanvas-end"
+        backdrop={true}
+      >
+        <Menu />
+      </Sidebar>
+
+      {/* 
       <Sidebar
         ref={sidebarStart}
         id="sidebarStart"
@@ -69,7 +92,7 @@ const Header = () => {
         title="Sidebar End"
         id="sidebarEnd"
         position="offcanvas-end"
-      />
+      /> */}
     </>
   )
 }

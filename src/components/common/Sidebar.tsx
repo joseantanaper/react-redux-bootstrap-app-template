@@ -1,96 +1,104 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-} from 'react'
+import { type OffcanvasParam } from '@components/types'
+import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
-import app from '@utils/app'
-import { type OffcanvasParam } from '../types'
-import Icon from './Icon'
-
+import Button from './Button'
+import Toggler from './Toggler'
 import {
   toggleSidebar,
   selectSidebar,
   toggleSidebarMode,
 } from '@app/slice/appSlice'
 
-const Sidebar = forwardRef((sidebar: OffcanvasParam, ref) => {
+import app from '@utils/app'
+
+const Sidebar = (offcanvas: OffcanvasParam) => {
+  const offcanvasRef = useRef<HTMLDivElement | null>(null)
+  const closeRef = useRef<HTMLButtonElement | null>(null)
+  const backdropRef = useRef<HTMLDivElement | null>(null)
+
   const dispatch = useAppDispatch()
-  const storedSidebar = useAppSelector(selectSidebar)
-  const sidebarRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    app.sidebar.restore(storedSidebar)
-  }, [])
-
-  useEffect(() => {
-    // console.log('Sidebar', 'collapsed', storedSidebar.collapsed)
-    app.sidebar.collapse(storedSidebar.collapsed)
-  }, [storedSidebar.collapsed])
-  useEffect(() => {
-    // console.log('Sidebar', 'mode', storedSidebar.mode)
-    app.sidebar.mode(storedSidebar.mode)
-  }, [storedSidebar.mode])
-
-  const linkEventsListeners = () => {
-    const conditionalToggle = () => {
-      const clickCurrentMode = Number(
-        document.documentElement?.getAttribute('data-app-offcanvas-start-mode')
-      )
-      console.log('conditionalToggle', clickCurrentMode)
-      if (clickCurrentMode === 0) dispatch(toggleSidebar())
+  const togglePush = () => {
+    if (offcanvasRef?.current?.dataset?.bsBackdrop !== 'true') {
+      offcanvasRef?.current?.setAttribute('data-bs-backdrop', 'true')
+      backdropRef?.current?.classList?.remove('d-none')
+    } else {
+      offcanvasRef?.current?.setAttribute('data-bs-backdrop', 'false')
+      backdropRef?.current?.classList?.add('d-none')
     }
-    sidebarRef.current?.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        conditionalToggle()
-      })
-    })
   }
 
   const toggleMode = () => {
-    dispatch(toggleSidebarMode())
+    if (offcanvasRef?.current) {
+      app.sidebar.toggleMode(offcanvasRef?.current)
+    }
   }
 
-  useImperativeHandle(ref, () => {
-    return {
-      toggle: () => {
-        dispatch(toggleSidebar())
-      },
-      toggleMode: toggleMode,
-    }
-  })
+  const close = () => {
+    const myToggler = (
+      document?.documentElement?.querySelector(
+        `button[data-bs-target="#${offcanvas?.id}"]`
+      ) as HTMLButtonElement
+    ).click()
+    if (offcanvasRef?.current) app.sidebar.collapse(offcanvasRef?.current)
+    console.log(`button[data-bs-target='#'${offcanvas?.id}]`)
+
+    const sidebarObj = document.getElementById(
+      String(offcanvas?.id)
+    ) as HTMLDivElement
+    const backdrop = Boolean(sidebarObj?.dataset?.bsBackdrop === 'true' || true)
+    if (!backdrop) app.sidebar.toggle(sidebarObj)
+  }
 
   return (
-    <div
-      ref={sidebarRef}
-      id={`${sidebar?.id}`}
-      className={`app-offcanvas position-fixed app-${sidebar?.position} p-0`}
-    >
-      {sidebar?.title && (
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title">
-            {sidebar?.title} | {storedSidebar.mode} | {storedSidebar.collapsed}
-          </h5>
-          <div className="btn-group position-absolute end-0">
-            <button type="button" className="btn" onClick={() => toggleMode()}>
-              <Icon id={storedSidebar.mode === 0 ? 'pin' : 'pinFill'} />
-            </button>
-            <button
-              type="button"
-              className="btn"
-              data-bs-dismiss="app-offcanvas"
-              onClick={() => dispatch(toggleSidebar())}
-            >
-              <Icon id="close" />
-            </button>
+    <>
+      <div
+        ref={offcanvasRef}
+        className={`app-offcanvas${offcanvas?.backdrop ? ' offcanvas' : ''}${offcanvas.position ? ' '.concat(offcanvas.position) : ''}`}
+        data-bs-scroll={true}
+        data-bs-backdrop={offcanvas?.backdrop || false}
+        data-app-push={true}
+        tabIndex={-1}
+        id={offcanvas.id}
+        aria-labelledby={offcanvas.id}
+      >
+        {offcanvas?.title && (
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title">{offcanvas?.title}</h5>
+            <div className="btn-group position-absolute end-0 me-3">
+              {!offcanvas?.backdrop && (
+                <Button onClick={toggleMode} iconId="pin" />
+              )}
+
+              <Toggler
+                toggleId={offcanvas?.id}
+                className="danger"
+                iconId="toggleLeft"
+              />
+              {/* <button
+                type="button"
+                className="btn btn-close d-flex float-end"
+                data-bs-dismiss="offcanvas"
+                data-bs-toggle={offcanvas?.id ? 'offcanvas' : undefined}
+                data-bs-target={
+                  offcanvas?.id ? '#'.concat(offcanvas?.id) : undefined
+                }
+                aria-controls={offcanvas?.id ? offcanvas?.id : undefined}
+                // onClick={close}
+              ></button> */}
+            </div>
           </div>
+        )}
+        <div
+          className={`offcanvas-body${offcanvas?.title ? ' '.concat('border-top') : ''}`}
+        >
+          <p>
+            Try scrolling the rest of the page to see this option in action.
+          </p>
         </div>
-      )}
-      <div className={`offcanvas-body`}>{sidebar?.children}</div>
-    </div>
+      </div>
+    </>
   )
-})
+}
 
 export default Sidebar

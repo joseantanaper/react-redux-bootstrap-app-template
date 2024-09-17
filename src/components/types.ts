@@ -62,5 +62,6 @@ export interface OffcanvasParam {
   id: string
   title?: string | undefined
   position?: OffcanvasPosition
+  backdrop?: boolean
   children?: ReactNode
 }
