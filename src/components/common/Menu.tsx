@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Icon from './Icon'
 
 const Menu = () => {
+  const accordionRef = useRef<HTMLDivElement | null>(null)
+
+  const customLinkOnClick = () => {}
+
+  useEffect(() => {
+    accordionRef?.current
+      ?.querySelectorAll('.list-group-item')
+      .forEach((link) => {
+        link.addEventListener('click', () => {
+          console.log('link')
+        })
+      })
+  }, [])
+
   return (
-    <div className="accordion border-0" id="accordionExample">
+    <div
+      className="accordion border-0"
+      id="accordionExample"
+      ref={accordionRef}
+    >
       <div className="accordion-item border-0">
         <h2 className="accordion-header border-0">
           <button
@@ -22,6 +40,8 @@ const Menu = () => {
           id="collapseOne"
           className="accordion-collapse border-0 collapse show"
           data-bs-parent="#accordionExample"
+          // data-bs-dismiss="offcanvas"
+          // Breaks when "offcanvas" class removed from "app-offcanvas"
         >
           <div className="accordion-body border-0 p-0">
             <div className="list-group ps-3">

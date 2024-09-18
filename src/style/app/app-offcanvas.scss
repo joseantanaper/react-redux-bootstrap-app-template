@@ -17,14 +17,11 @@ html > body > #root > .app {
   .app-offcanvas {
     @if ($app-offcanvas-debug or $app-debug) {
       @extend .app-debug-border;
-      top: calc($app-navbar-height + calc($app-debug-border * 2));
-      bottom: calc(calc($app-footer-height + calc($app-debug-border * 2)));
-    } @else {
-      top: $app-navbar-height !important;
-      bottom: $app-footer-height !important;
     }
     @extend .offcanvas, .shadow-sm;
     transition: $app-transition;
+    top: $app-navbar-height !important;
+    bottom: $app-footer-height !important;
 
     clip-path: inset(0px -24px 0px 0px);
     padding: $app-padding;
@@ -68,7 +65,7 @@ html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='false'] {
     left: -($app-offcanvas-start-width);
   }
 }
-html[data-app-offcanvas-start-show='0'],
+html[data-app-offcanvas-start-show='false'],
 html[data-app-offcanvas-start-mode='0'][data-app-offcanvas-start-show='true'] {
   .row {
     .app-content {

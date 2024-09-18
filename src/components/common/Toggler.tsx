@@ -8,8 +8,9 @@ const Toggler = (button: BtnParam) => {
     const sidebarObj = document.getElementById(
       String(button?.toggleId)
     ) as HTMLDivElement
-    const backdrop = Boolean(sidebarObj?.dataset?.bsBackdrop === 'true' || true)
-    if (!backdrop) app.sidebar.toggle(sidebarObj)
+    // const backdrop = Boolean(sidebarObj?.dataset?.bsBackdrop === 'true' || true)
+    // if (!backdrop) app.sidebar.toggle(sidebarObj)
+    app.sidebar.toggle(sidebarObj)
   }
 
   return (

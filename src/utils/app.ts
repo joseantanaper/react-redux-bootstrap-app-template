@@ -17,13 +17,12 @@ const app = {
         const position = sidebarObj?.classList?.contains('offcanvas-start')
           ? 'offcanvas-start'
           : 'offcanvas-end'
-        if (push) {
-          document.documentElement?.setAttribute(
-            `data-app-${position}-show`,
-            String(!isShow)
-          )
-        }
-        console.log(push, isShow, position)
+        // if (push) {
+        document.documentElement?.setAttribute(
+          `data-app-${position}-show`,
+          String(!isShow)
+        )
+        // }
       }
     },
     toggleMode: (sidebarObj: HTMLDivElement) => {
@@ -32,14 +31,19 @@ const app = {
         const position = sidebarObj?.classList?.contains('offcanvas-start')
           ? 'offcanvas-start'
           : 'offcanvas-end'
+        const currentMode = document.documentElement?.getAttribute(
+          `data-app-${position}-mode`
+        )
+        if (currentMode === '1') {
+          sidebarObj?.classList?.add('offcanvas')
+        } else {
+          sidebarObj?.classList?.remove('offcanvas')
+        }
         document.documentElement?.setAttribute(
           `data-app-${position}-mode`,
-          document.documentElement?.getAttribute(
-            `data-app-${position}-mode`
-          ) === '0'
-            ? '1'
-            : '0'
+          currentMode === '0' ? '1' : '0'
         )
+
         document.documentElement?.setAttribute(
           `data-app-${position}-show`,
           'true'

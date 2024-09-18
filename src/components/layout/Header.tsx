@@ -60,39 +60,18 @@ const Header = () => {
         ]}
       />
 
-      <Sidebar
-        id="sidebarStart"
-        title="Sidebar Start"
-        position="offcanvas-start"
-      >
+      <Sidebar id="sidebarStart" title="Navigation" position="offcanvas-start">
         <Menu />
       </Sidebar>
 
       <Sidebar
         id="sidebarEnd"
-        title="Sidebar End"
+        title="Config"
         position="offcanvas-end"
         backdrop={true}
       >
         <Menu />
       </Sidebar>
-
-      {/* 
-      <Sidebar
-        ref={sidebarStart}
-        id="sidebarStart"
-        title="Sidebar Start"
-        position="offcanvas-start"
-      >
-        <Menu />
-      </Sidebar>
-
-      <Sidebar
-        ref={sidebarEnd}
-        title="Sidebar End"
-        id="sidebarEnd"
-        position="offcanvas-end"
-      /> */}
     </>
   )
 }

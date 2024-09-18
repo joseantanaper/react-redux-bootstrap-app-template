@@ -1,0 +1,14 @@
+$bootstrap-accordion-debug: true;
+
+$accordion-button-focus-box-shadow: 0 0 0 none;
+$accordion-button-focus-border-color: red;
+$accordion-button-active-bg: none;
+$accordion-border-color: transparent;
+$accordion-transition: 0;
+
+@if ($bootstrap-accordion-debug) {
+  $accordion-border-width: 50px !important;
+  $accordion-body-padding-x: 50px;
+  $accordion-body-padding-y: 50px;
+  $accordion-border-width: 50px;
+}

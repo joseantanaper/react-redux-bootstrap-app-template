@@ -62,6 +62,7 @@
         @extend .app-debug-border;
         background-color: darkred;
         margin-top: calc($app-navbar-height + calc($app-debug-border * 2));
+        margin-top: calc($app-navbar-height);
         margin-bottom: calc($app-footer-height + calc($app-debug-border * 2));
       } @else {
         margin-top: calc($app-navbar-height);

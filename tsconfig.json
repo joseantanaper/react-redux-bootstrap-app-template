@@ -26,6 +26,7 @@
       "@utils/*": ["src/utils/*"],
 
       "@bootstrap-scss/*": ["./node_modules/bootstrap/scss/bootstrap"],
+
       "@bootstrap-icons-svg/*": [
         "./node_modules/bootstrap-icons/bootstrap-icons.svg"
       ],

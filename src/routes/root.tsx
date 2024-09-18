@@ -36,10 +36,10 @@ const App = () => {
 
   useEffect(() => {
     // console.log('Sidebar', 'collapsed', storedSidebar.collapsed)
-    document.documentElement?.setAttribute(
-      'data-app-offcanvas-start-collapsed',
-      storedSidebar.collapsed
-    )
+    // document.documentElement?.setAttribute(
+    //   'data-app-offcanvas-start-collapsed',
+    //   storedSidebar.collapsed
+    // )
   }, [storedSidebar.collapsed])
 
   useEffect(() => {
@@ -55,10 +55,10 @@ const App = () => {
       'data-app-offcanvas-start-mode',
       storedSidebar.mode
     )
-    document.documentElement?.setAttribute(
-      'data-app-offcanvas-start-collapsed',
-      storedSidebar.collapsed
-    )
+    // document.documentElement?.setAttribute(
+    //   'data-app-offcanvas-start-collapsed',
+    //   storedSidebar.collapsed
+    // )
   }, [])
 
   useEffect(() => {
