@@ -12,7 +12,7 @@ export default defineConfig({
       ? '/'
       : '/react-redux-bootstrap-app-template',
   build: {
-    outDir: './docs'
+    outDir: './dist'
   },
   plugins: [react()],
   server: {
