@@ -9,8 +9,11 @@ const __dirname = path.dirname(__filename)
 export default defineConfig({
   base:
     process.env.NODE_ENV === 'development'
-      ? ''
-      : 'react-redux-bootstrap-app-template',
+      ? '/'
+      : '/react-redux-bootstrap-app-template',
+  build: {
+    outDir: './docs'
+  },
   plugins: [react()],
   server: {
     open: true,
