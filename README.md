@@ -159,7 +159,16 @@ npm install gh-pages --save-dev
 "deploy": "gh-pages -d build -b master",
 ```
 
-5. Add remote that points to GitHub Repository
+5. Add remote that points to GitHub Repository (NOT NEEDED)
    git remote add origin https://joseantanaper.github.io/react-redux-bootstrap-app-template.git
+
+6. Add to package.json:
+   ```json
+   "homepage": "https://joseantanaper.github.io/react-redux-bootstrap-app-template"
+   ```
+8. Add to vite.config.ts:
+   ```json
+   base: "/react-redux-bootstrap-app-template"
+   ```
 
 npx gh-pages-clean
